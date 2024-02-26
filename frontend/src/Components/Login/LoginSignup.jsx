@@ -36,6 +36,10 @@ const LoginSignup = () => {
         setResetEmail('');
         handlePopupClose();
         setShowNotification(true);
+
+        setTimeout(() => {
+            setShowNotification(false);
+        },2000);
     }
 
 
@@ -98,10 +102,11 @@ const LoginSignup = () => {
                         onChange={handlePasswordChange}
                         required
                     />
+                    <p className='PLogin' onClick={handleForgetPassword}>Forget Password ?</p>
                     <button onClick={handleLogin}>Login</button>
                     <br />
 
-                    <p onClick={handleForgetPassword}>Forget Password ?</p>
+                    
                 </form>
                 {showPopup && (
                     <div className="popup">

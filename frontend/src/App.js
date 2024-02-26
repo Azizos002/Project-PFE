@@ -6,6 +6,7 @@ import About from './Components/About/About'
 import Dashboard from './Components/Dashboard/Dashboard'
 import Contact from './Components/Contact/Contact'
 import LoginSignup from './Components/Login/LoginSignup'
+
 function App() {
   return (
     <Router>
@@ -16,8 +17,8 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/Contact' element={<Contact />} />
-
       </Routes>
+      
     </Router>
   );
 }

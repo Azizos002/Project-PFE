@@ -1,17 +1,15 @@
-
-
 .main {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
-    height: 400px;
+    width: 400px;
+    height: 450px;
     background: linear-gradient(to bottom, #004268, #005D8F, #0070AD, #0082C1, #0093C4, #00A8D4);
-    /* Adjust the colors as needed */
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 5px 20px 50px #000;
+    margin-top: 20px;
 }
 
 #chk {
@@ -24,15 +22,23 @@
     height: 100%;
 }
 
-p {
+.PLogin {
     color: white;
     text-align: center;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.PLogin:hover{
+    font-weight: bold;
+    transform: translateY(-5px);
+}
+.PLogin:hover:active{
+    transform: rotateY(5px);
 }
 
 label {
     color: #fff;
-    font-size: 2.3em;
+    font-size: 35px;
     justify-content: center;
     display: flex;
     margin: 60px;
@@ -42,10 +48,9 @@ label {
 }
 
 input {
-    width: 60%;
+    width: 70%;
     height: 20px;
     background: #e0dede;
-    justify-content: center;
     display: flex;
     margin: 20px auto;
     padding: 10px;
@@ -56,10 +61,10 @@ input {
 
 button {
     width: 60%;
-    height: 40px;
+    height: 35px;
+    display: block;
     margin: 10px auto;
     justify-content: center;
-    display: block;
     color: #fff;
     background: #573b8a;
     font-size: 1em;
@@ -147,15 +152,9 @@ button:hover {
     transform: translate(-50%, -50%);
     width: 200px;
     background-color: #4caf50;
-    /* Green background color */
     color: #ffffff;
-    /* White text color */
     padding: 20px;
-    /* Padding */
     border-radius: 5px;
-    /* Rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Box shadow */
-    /* z-index: 999; */
     display: block;
-}
+}   
