@@ -27,16 +27,7 @@ const LoginSignup = () => {
         setResetEmail(e.target.value);
     }
 
-    const handleSendChange = (e) => {
-        console.log("Send reset Email to : ", { resetEmail });
-        setResetEmail('');
-        handlePopupClose();
-        setShowNotification(true);
 
-        setTimeout(() => {
-            setShowNotification(false);
-        },2000);
-    }
 
 
 
@@ -92,6 +83,28 @@ const LoginSignup = () => {
             }
         } catch (e) {
             console.error('Error during Login  ',e);
+        }
+    }
+
+    const handleSendChange = async (e) => {
+        try {
+            const response = await axios.post('http://localhost:5000/forgot-password', {
+                email: resetEmail,
+            });
+            if (response.status === 200 ) {
+                console.log("Send reset Email to : ", { resetEmail });
+                setResetEmail('');
+                handlePopupClose();
+                setShowNotification(true);
+    
+                setTimeout(() => {
+                    setShowNotification(false);
+                },2000);
+            } else {
+                console.error('Error during reset password');
+            }
+        } catch (error) {
+            console.error('Error during Reset PASSSS  ' , error);
         }
     }
 

@@ -10,7 +10,8 @@ const PORT = 5000;
 
 const DataBase = process.env.DATABASE_URI;
 const userRoutes = require('./Routes/usersRoute');
-const  authRoutes = require('./Routes/authRoute');
+const authRoutes = require('./Routes/authRoute');
+const forgotPasswordRoute = require('./Routes/passwordResetRoute');
 
 
 app.use(express.json());
@@ -28,6 +29,8 @@ mongoose.connect(DataBase)
 // Use Routes 
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
+app.use('/forgot-password', forgotPasswordRoute);
+
 
 app.listen(PORT, () => {
     console.log('Server Started on ', PORT)
