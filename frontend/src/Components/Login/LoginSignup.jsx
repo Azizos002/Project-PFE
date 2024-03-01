@@ -14,10 +14,6 @@ const LoginSignup = () => {
 
     const navigate = useNavigate();
 
-    const handleLogin = () =>{
-        navigate('/dashboard');
-    }
-
 
     const handleForgetPassword = () => {
         setShowPopup(true);
@@ -58,7 +54,7 @@ const LoginSignup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleRegister(e);
+        // handleRegister(e);
     }
     // Send register data to backend
     const handleRegister = async (e) => {
@@ -79,6 +75,27 @@ const LoginSignup = () => {
             console.error('Error during registration', e);
         }
     }
+    
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        
+        try {
+            const response = await axios.post('http://localhost:5000/auth/login',{
+                email,
+                password,
+            });
+            if (response.status === 200) {
+                console.log('Login Succeesss');
+                navigate('/dashboard');
+            } else {
+                console.log('Login Failed');
+            }
+        } catch (e) {
+            console.error('Error during Login  ',e);
+        }
+    }
+
+
 
     return (
         <div className="main">
@@ -93,6 +110,7 @@ const LoginSignup = () => {
                         name="email"
                         placeholder="Email"
                         onChange={handleEmailChange}
+                        className='loginInput'
                         required
                     />
                     <input
@@ -100,12 +118,12 @@ const LoginSignup = () => {
                         name="pswd"
                         placeholder="Password"
                         onChange={handlePasswordChange}
+                        className='loginInput'
                         required
                     />
                     <p className='PLogin' onClick={handleForgetPassword}>Forget Password ?</p>
-                    <button onClick={handleLogin}>Login</button>
+                    <button className="login-button" onClick={handleLogin}>Login</button>
                     <br />
-
                     
                 </form>
                 {showPopup && (
@@ -116,6 +134,7 @@ const LoginSignup = () => {
                             placeholder='Enter your Email'
                             onChange={handlePopupEmailChange}
                             value={resetEmail}
+                            className='loginInput'
                             required
                         />
                         <button onClick={handleSendChange}>Send</button>
@@ -136,6 +155,7 @@ const LoginSignup = () => {
                         name="username"
                         placeholder="User name"
                         onChange={handleUsernameChange}
+                        className='loginInput'
                         required
                     />
                     <input
@@ -143,6 +163,7 @@ const LoginSignup = () => {
                         name="email"
                         placeholder="Email"
                         onChange={handleEmailChange}
+                        className='loginInput'
                         required
                     />
                     <input
@@ -150,10 +171,11 @@ const LoginSignup = () => {
                         name="pswd"
                         placeholder="Password"
                         onChange={handlePasswordChange}
+                        className='loginInput'
                         required
                     />
 
-                    <button onClick={handleRegister}>Register</button>
+                    <button onClick={handleRegister} className='login-button'>Register</button>
 
 
                 </form>

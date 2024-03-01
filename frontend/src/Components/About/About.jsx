@@ -1,10 +1,13 @@
 import React from 'react'
 import './About.css'
 import Footer from '../Footer/Footer'
+import Navbar from '../Navbar/Navbar'
 
 const About = () => {
   return (
-    <><div className="about-page">
+    <>
+    <Navbar />
+    <div className="about-page">
       <h1 className="about-title">About Smart Money Management</h1>
       <p className="about-intro">Welcome to our about page! Here, we'll provide you with some information about our smart web application for money management, our team, and our mission.</p>
       <section className="about-mission">
@@ -27,7 +30,9 @@ const About = () => {
         </ul>
         <p className="products-text">Our application is designed to be customizable and flexible, allowing users to tailor their experience to their specific financial needs and goals. If you're interested in learning more about our smart money management application, feel free to explore our website or contact us directly.</p>
       </section>
-    </div><Footer /></>
+    </div>
+    <Footer />
+    </>
   )
 }
 
