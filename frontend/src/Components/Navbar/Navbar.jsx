@@ -43,7 +43,7 @@ const Navbar = () => {
               <NavLink to="/Contact">Contact</NavLink>
             </li>
             <li>
-              <NavLink to="/About">Blog</NavLink>
+              <NavLink to="/Dashboard">Dashboard</NavLink>
             </li>
             <li>
               {/* <form className="search-form" onSubmit={handleSubmit}>

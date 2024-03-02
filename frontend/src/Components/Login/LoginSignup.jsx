@@ -193,7 +193,7 @@ const LoginSignup = () => {
 
                 </form>
             </div>
-        </div>
+        </div>  
     )
 }
 

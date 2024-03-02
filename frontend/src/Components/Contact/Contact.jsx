@@ -16,10 +16,22 @@ const Contact = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your logic to handle form submission
-    console.log('Form submitted:', formData);
+
+    try {
+      const response = await fetch('http://localhost:5000/contact/submit', {
+        method: 'POST',
+        headers: {
+          'content-type' : 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      console.log(result)
+    } catch (error) {
+      console.error('Error submitting contact form : ',error);
+    }
   };
 
   return (
@@ -27,7 +39,7 @@ const Contact = () => {
       <Navbar />
       <div className="form-container">
         <form onSubmit={handleSubmit} className="form-container">
-          <h1>Get  in Touch</h1>
+          <h1>Get in Touch</h1>
           <input
             required
             placeholder="First Name"

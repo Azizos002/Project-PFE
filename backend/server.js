@@ -9,14 +9,6 @@ const app = express();
 const PORT = 5000;
 
 const DataBase = process.env.DATABASE_URI;
-const userRoutes = require('./Routes/usersRoute');
-const authRoutes = require('./Routes/authRoute');
-const forgotPasswordRoute = require('./Routes/passwordResetRoute');
-
-
-app.use(express.json());
-app.use(cors());
-
 //connection to MongoDB
 mongoose.connect(DataBase)
     .then(() => {
@@ -26,12 +18,21 @@ mongoose.connect(DataBase)
         console.error('Error Connecting to MongoDB ', err);
     });
 
+app.use(express.json());
+app.use(cors());
+
+const userRoutes = require('./Routes/usersRoute');
+const authRoutes = require('./Routes/authRoute');
+const forgotPasswordRoute = require('./Routes/passwordResetRoute');
+const contactSubmit = require('./Routes/contactRoute');
+
 // Use Routes 
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/forgot-password', forgotPasswordRoute);
+app.use('/contact', contactSubmit);
 
 
 app.listen(PORT, () => {
-    console.log('Server Started on ', PORT)
+    console.log(`Server started on ${new Date().toLocaleString()} at http://localhost:${PORT}`);
 })
