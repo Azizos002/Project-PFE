@@ -10,16 +10,16 @@ const footer = () => {
       <p className="footer__text">© 2024 Smart-Money. All rights reserved.</p>
       <ul className="footer__links">
         <li className="footer__link-item">
+          <a href="/" className="footer__link">Home</a>
+        </li>
+        <li className="footer__link-item">
           <a href="/about" className="footer__link">About</a>
         </li>
         <li className="footer__link-item">
-          <a href="/careers" className="footer__link">Careers</a>
+          <a href="/contact" className="footer__link">Contact</a>
         </li>
         <li className="footer__link-item">
-          <a href="/brand-center" className="footer__link">Brand Center</a>
-        </li>
-        <li className="footer__link-item">
-          <a href="/blog" className="footer__link">Blog</a>
+          <a href="/features" className="footer__link">features</a>
         </li>
       </ul>
       <ul className="footer__social-links">

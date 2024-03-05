@@ -29,7 +29,7 @@ const contactSubmit = require('./Routes/contactRoute');
 // Use Routes 
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
-app.use('/forgot-password', forgotPasswordRoute);
+app.use('/forgot', forgotPasswordRoute);
 app.use('/contact', contactSubmit);
 
 

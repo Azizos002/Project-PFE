@@ -14,7 +14,7 @@ const Home = () => {
         <p>
           Let's get started
         </p>
-        <Link className="App-link" to="/LoginSignup">
+        <Link className="App-link" to="/login">
           Login NOW
         </Link>
       </header>

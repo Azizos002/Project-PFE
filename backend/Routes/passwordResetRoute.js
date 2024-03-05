@@ -1,13 +1,15 @@
+// passwordResetRoute.js
 const express = require('express');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const randomstring = require('randomstring');
 
 const User = require('../models/User');
 
 const router = express.Router();
 const emailUser = process.env.EMAIL_USR;
 const passwordUser = process.env.PASS_USR;
-//create a nodemailer transport 
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -16,49 +18,48 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-// route for forgot-password
 router.post('/forgot-password', async (req, res) => {
     const { email } = req.body;
 
     try {
-        //generate a unique token
-        const token = crypto.randomBytes(20).toString('hex');
+        console.log('Step 1: Generating a unique OTP...');
+        const otp = randomstring.generate({ length: 6, charset: 'numeric' });
+        console.log('OTP generated:', otp);
 
-        //find the user by his email
+        console.log('Step 2: Finding the user by email...');
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(404).json({ message: 'User not found..' });
+            console.log('User not found.');
+            return res.status(404).json({ message: 'User not found.' });
         }
 
-        //Save the token and expiration time in the user's record
-        user.resetPasswordToken = token;
-        user.resetPasswordExpires = Date.now() + 3600000;
+        console.log('Step 3: Updating user record with the OTP and expiration time...');
+        user.resetPasswordOTP = otp;
+        user.resetPasswordExpires = Date.now() + 600000; // OTP expires in 10 minutes
 
-        //save user with the updates
         await user.save();
+        console.log('User record updated with OTP and expiration time.');
 
-        //Send an email with the reset link to the USER
+        console.log('Step 4: Sending an email with the OTP...');
         const mailOptions = {
             from: 'pfe.projet2024@gmail.com',
             to: email,
             subject: 'Password Reset Request',
-            text: `You are receiving this email because you (or someone else) have requested a password reset for your account.\n\nPlease click on the following link to reset your password: http://localhost:5000/reset-password?token=${token}\n\nIf you did not request a password reset, please ignore this email and your password will remain unchanged.\n\nThis link will expire in 1 hour. If you have trouble clicking the link, please copy and paste the URL into your web browser.\n\nRegards,\nThe Smart-Money Team`,
+            text: `Your OTP for password reset is: ${otp}`,
         };
-
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                console.error('Error sending Email : ', error);
-                return res.status(500).json({ message: 'Error sending email : ', error });
+                console.error('Error sending email:', error);
+                return res.status(500).json({ message: 'Error sending email:', error });
             }
-            console.log('Email  sent : ', info.response);
-            return res.status(200).json({ message: 'Password reset initiated. Check your email for instructions <3 .' });
+            console.log('Email sent:', info.response);
+            return res.status(200).json({ message: 'OTP sent. Check your email for instructions <3.' });
         });
     } catch (error) {
-        console.error('Error during forgot password ', error);
+        console.error('Error during forgot password:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-
 
 module.exports = router;

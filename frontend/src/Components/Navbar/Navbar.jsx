@@ -43,7 +43,7 @@ const Navbar = () => {
               <NavLink to="/Contact">Contact</NavLink>
             </li>
             <li>
-              <NavLink to="/Dashboard">Dashboard</NavLink>
+              <NavLink to="/Features">Features</NavLink>
             </li>
             <li>
               {/* <form className="search-form" onSubmit={handleSubmit}>
@@ -62,7 +62,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="nav-right">
-        <NavLink to="/LoginSignup" className="Nav-Login-button">Log In</NavLink>
+        <NavLink to="/Login" className="Nav-Login-button">LOGIN</NavLink>
       </div>
     </nav>
   );

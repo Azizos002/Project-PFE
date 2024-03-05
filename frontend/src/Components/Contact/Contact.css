@@ -1,6 +1,6 @@
 .form-container {
   padding: 20px;
-  max-width: 400px;
+  max-width: 600px;
   width: 100%;
   position: absolute;
   top: 50%;
@@ -8,15 +8,16 @@
   transform: translate(-50%, -50%);
   display: block;
   margin: auto;
-
+  z-index: 9999;
 }
 
 h1 {
   text-align: center;
   cursor: default;
+  font-size: 40px;
 }
 
-.form-input {
+.contact-input {
   width: 100%;
   height: 20px;
   padding: 10px;
@@ -27,29 +28,53 @@ h1 {
   border-radius: 5px;
   background-color: rgb(217, 217, 217);
 }
+.contact-input:hover{
+  border: 2px solid #3EA76A;
+}
+
 
 .fancy {
-  border: solid 1px #3498db;
-  color: #3498db;
+  border: solid 1px #3EA76A;
+  color: #3EA76A;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   overflow: hidden;
   margin: auto;
   display: block;
-  font-size: 20px;
+  font-size: 25px;
 }
 .fancy:hover{
-  background-color: #3498db;
+  background-color: #3EA76A;
   color: #fff;
 }
 
 @media (max-width: 600px) {
-  /* Add responsive styles as needed */
   .form-container {
     max-width: 80%;
   }
-  .textarea{
-    max-width: 80%;
+  .contact-input{
+    width: 100%;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+.contact-input.error {
+  border-color:solid 2px red;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

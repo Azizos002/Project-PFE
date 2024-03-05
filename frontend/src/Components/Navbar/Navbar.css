@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* body {
-    margin: 0;
-    padding: 0;
-    background-color: #fcfcfc;
-} */
-
 .container {
     font-family: 'Poppins', sans-serif;
     max-width: 1100px;
@@ -48,7 +42,8 @@
     display: flex;
     justify-content: space-between;
     list-style-type: none;
-    padding-left: 0px;
+    position: relative;
+    left: 60px;
 }
 
 .nav-elements ul li:not(:last-child) {
@@ -63,7 +58,7 @@
 }
 
 .nav-elements ul a.active {
-    color: #2cae15;
+    color: #3EA76A;
     font-weight: 500;
     position: relative;
 }
@@ -75,7 +70,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #2cae15;
+    background-color: #3EA76A;
 }
 
 @media (max-width: 768px) {
@@ -94,7 +89,7 @@
 
 @media (max-width: 600px) {
     .container{
-        margin-right: 0px;
+        margin-right: 20px;
     }
     .menu-icon {
         display: block;
@@ -118,10 +113,12 @@
         width: 270px;
     }
 
+
     .nav-elements ul {
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: absolute  ;
     }
 
     .nav-elements ul li {
@@ -134,18 +131,17 @@
     color: #fff;
     padding: 8px 15px;
     border-radius: 5px;
-    border: solid 1px #4CAF50;
+    border: solid 1px #3EA76A;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     margin: 4px 2px;
-    margin-right: 10px;
-    
+    position: relative;
+    right: 20px;
 }
 .Nav-Login-button:hover {
-    background-color: #4CAF50;
+    background-color: #3EA76A;
     font-weight: bold;
-
 }
 /* 
 .search-form {
