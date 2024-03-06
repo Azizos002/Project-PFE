@@ -49,7 +49,7 @@ export const Dashboard = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Object.key(errors).length === 0 && errors.constructor === Object) {
+    if (Object.keys(errors).length === 0 && errors.constructor === Object) {
       console.log('login data submited', formData);
     } else {
       console.log('Faileddd');
@@ -75,7 +75,6 @@ export const Dashboard = () => {
     }
   }
 
-
   return (
     <div className="all">
       <div className="login-main">
@@ -93,17 +92,17 @@ export const Dashboard = () => {
             <div className="login-center">
               <h2>Login</h2>
               <form onSubmit={handleSubmit}>
-                {errors.email && <span className="error">{errors.email}</span>}
                 <input type="email" placeholder="Email" name="email" value={formData.email} onChange={handleChange} />
+                {errors.email && <span className="error">{errors.email}</span>}
+
                 <div className="pass-input-div">
-                  {errors.password && <span className="error">{errors.password}</span>}
                   <input type={showPassword ? "text" : "password"} name="password" placeholder="password" value={formData.password} onChange={handleChange} />
                   {showPassword ? <FaEyeSlash onClick={() => { setShowPassword(!showPassword) }} /> : <FaEye onClick={() => { setShowPassword(!showPassword) }} />}
-
+                  {errors.password && <span className="error">{errors.password}</span>}
                 </div>
 
                 <div className="login-center-options">
-                  <Link to="/password-reset" className="forgot-pass-link">
+                  <Link to="/ResetPass" className="forgot-pass-link">
                     forget password ?
                   </Link>
                 </div>

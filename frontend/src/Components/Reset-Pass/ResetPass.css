@@ -1,0 +1,118 @@
+.password-reset-container {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #001e2b;
+}
+
+.password-reset-form {
+    width: 500px;
+    height: 300px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.password-reset-form h2 {
+    color: #001e2b;
+    font-size: 30px;
+}
+
+.password-reset-form form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.password-reset-form input {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 0px;
+    border-bottom: 1px solid #001e2b;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.password-reset-form input:hover {
+    border: 2px solid #3ea76a;
+}
+
+.password-reset-form button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #001e2b;
+    color: white;
+}
+
+.password-reset-form button:hover {
+    background-color: #3ea76a;
+}
+
+.success-message {
+    color: #3ea76a;
+    margin-top: 10px;
+}
+
+.e-message {
+    color: red;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.back-to-login {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #001e2b;
+}
+
+.back-to-login a {
+    text-decoration: none;
+    color: #3ea76a;
+}
+
+.back-to-login a:hover {
+    text-decoration: underline;
+}
+
+/* .password-reset-container .custom-model.react-modal-overlay {
+    position: ;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+/* .password-reset-container .custom-model.react-modal-content {
+    width: 400px;
+    padding: 20px;
+    background-color: #F0F0F0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+} */
+
+.custom-model{
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background-color: #001e2b;
+    flex-direction: column;
+    align-items: center;
+    color: #f0f0f0;
+}

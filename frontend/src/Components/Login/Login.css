@@ -26,6 +26,10 @@
     left: 10px;
 }
 
+.login-right h2{
+    color: #001e2b;
+}
+
 .login-left h3 {
     padding-top: 10%;
     font-size: 35px;
@@ -106,7 +110,7 @@ form input[type='text']:hover {
     font-size: 15px;
     position: absolute;
     right: 10px;
-    bottom: 35px;
+    bottom: 55px;
     cursor: pointer;
     outline: none;
 }

@@ -6,6 +6,7 @@ import Contact from './Components/Contact/Contact'
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login'
 import Features from './Components/Features/Features';
+import ResetPass from './Components/Reset-Pass/ResetPass';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login />} />
         <Route path='features' element={<Features />} />
+        <Route path='/ResetPass' element={<ResetPass />} />
       </Routes>
     </Router>
   );
