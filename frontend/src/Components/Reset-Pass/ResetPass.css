@@ -8,20 +8,53 @@
 }
 
 .password-reset-form {
-    width: 500px;
-    height: 300px;
+    width: 80%;
+    height: 70%;
     padding: 20px;
     background-color: #f0f0f0;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     display: flex;
+}
+
+.rightSide{
+    flex-grow: 1;
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.resetLabel{
+    text-align: left;
+}
+
+.rightSide form{
+    width: 70%;
+
+}
+
+.rightSide form input{
+    border: solid 1px #001e2b;
+}
+
+.rightSide form label{
+    margin-bottom: 5px;
+    color: #001e2b;
+} 
+
+.leftSide{
+    flex-grow: 0.2;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
 }
 
 .password-reset-form h2 {
     color: #001e2b;
-    font-size: 30px;
+    font-size: 50px;
+    margin-bottom: 10px;
 }
 
 .password-reset-form form {
@@ -69,11 +102,7 @@
     margin-top: 0px;
 }
 
-.back-to-login {
-    margin-top: 30px;
-    font-size: 14px;
-    color: #001e2b;
-}
+
 
 .back-to-login a {
     text-decoration: none;
@@ -84,35 +113,65 @@
     text-decoration: underline;
 }
 
-/* .password-reset-container .custom-model.react-modal-overlay {
-    position: ;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+.vertical-line {
+  border-left: 2px solid #001e2b;
+  height: 100%;
+  margin: 0 10px;
+}
+
+.LinkHomeReset img{ 
+    width: 10px;
+    position: relative;
+    right: 0px;
+    top: 0px;
+}
+.leftSide .LinkHomeReset p{
+    font-size: 15px;
+    line-height: 15px;
+    margin: 0;
+    text-decoration: none;
+    color: #001e2b; 
+}
+
+.leftSide .LinkHomeReset p:hover{
+    font-weight: bolder;
+    color: #3ea76a;
+}
+
+.leftSide .LinkHomeReset{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.leftSide .illustration {
     display: flex;
     justify-content: center;
     align-items: center;
-} */
 
-/* .password-reset-container .custom-model.react-modal-content {
-    width: 400px;
-    padding: 20px;
-    background-color: #F0F0F0;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-} */
-
-.custom-model{
-    width: 300px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+}
+.leftSide .illustration img {
+    width: 500px;
     display: flex;
-    background-color: #001e2b;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    color: #f0f0f0;
+    position: relative;
+    right: 20px;
+}
+@media (max-width: 676px) {
+    .leftSide .illustration{
+        display: none;
+    }
+    .vertical-line{
+        display: none;
+    }
+    .rightSide{
+        width: 70%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }

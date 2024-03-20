@@ -14,7 +14,7 @@
 }
 
 .navbar {
-    height: 50px;
+    height: 60px;
     background-color: #282c34;
     position: relative;
     justify-content: center;
@@ -44,6 +44,8 @@
     list-style-type: none;
     position: relative;
     left: 60px;
+    padding-left: 0px;
+    margin-top: 21px;
 }
 
 .nav-elements ul li:not(:last-child) {

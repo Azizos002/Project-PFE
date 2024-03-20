@@ -5,17 +5,7 @@ import menu from '../Assets/menu.png';
 // import searchIcon from '../Assets/searchIcon.png'
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
-  // const [searchTerm, setSearchTerm] = useState('');
 
-  // const handleSearch = (e) => {
-  //   setSearchTerm(e.target.value);
-  //   console.log('Search for:', e.target.value);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Add your search logic here
-  // };
 
   const handleShowNavbar = () => {
     setShowNavbar((prevShowNavbar) => !prevShowNavbar);
@@ -44,19 +34,6 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to="/Features">Features</NavLink>
-            </li>
-            <li>
-              {/* <form className="search-form" onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  value={searchTerm}
-                  onChange={handleSearch}
-                />
-                <button type="submit">
-                  <img src={searchIcon} alt="search-icon" />
-                </button>
-              </form> */}
             </li>
           </ul>
         </div>

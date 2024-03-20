@@ -7,6 +7,9 @@ import Register from './Components/Register/Register';
 import Login from './Components/Login/Login'
 import Features from './Components/Features/Features';
 import ResetPass from './Components/Reset-Pass/ResetPass';
+import NewPass from './Components/NewPass/NewPass';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Nav from './Components/Dashboard/Nav';
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='features' element={<Features />} />
         <Route path='/ResetPass' element={<ResetPass />} />
+        <Route path='/NewPass' element={<NewPass />} />
+        <Route path='/Dashboard' element={<Dashboard />} />
+        <Route path='/Nav'element={<Nav />} />
       </Routes>
     </Router>
   );

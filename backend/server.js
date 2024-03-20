@@ -23,15 +23,14 @@ app.use(cors());
 
 const userRoutes = require('./Routes/usersRoute');
 const authRoutes = require('./Routes/authRoute');
-const forgotPasswordRoute = require('./Routes/passwordResetRoute');
+const passwordResetRoutes = require('./Routes/passwordResetRoute');
 const contactSubmit = require('./Routes/contactRoute');
 
 // Use Routes 
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
-app.use('/forgot', forgotPasswordRoute);
+app.use('/forgot', passwordResetRoutes);
 app.use('/contact', contactSubmit);
-
 
 app.listen(PORT, () => {
     console.log(`Server started on ${new Date().toLocaleString()} at http://localhost:${PORT}`);

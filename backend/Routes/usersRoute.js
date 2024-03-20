@@ -20,9 +20,10 @@ router.post(
         }
         
         try {
-            const hashedPassword = await bcrypt.hash(req.body.password, 10); // Adjust saltRounds as needed
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
             const user = await User.create({ ...req.body, password: hashedPassword });
             res.json(user);
+            console.log('Registration done...');
         } catch (err) {
             console.error('Error during registration:', err);
             res.status(500).json({ errors: 'Internal server error' });

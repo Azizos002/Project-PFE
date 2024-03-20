@@ -1,0 +1,88 @@
+/* ResetPass.css */
+
+.custom-model {
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-model>div {
+  width: 600px;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  /* Added for positioning the exit button */
+}
+
+.custom-model .exit {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-model .exit img {
+  width: 32px;
+
+}
+
+
+.custom-model h2 {
+  margin-bottom: 15px;
+}
+
+.custom-model p {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.custom-model input {
+  width: 70px;
+  height: 40px;
+  margin-right: 10px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #007bff !important;
+  background-color: rgb(210, 210, 210);
+  border-radius: 4px;
+  outline: none;
+}
+
+.custom-model .SendOTP {
+  width: 50%;
+  margin-top: 15px;
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.custom-model .SendOTP:hover {
+  background-color: #014287;
+}

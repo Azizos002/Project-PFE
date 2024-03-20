@@ -76,9 +76,13 @@ const Contact = () => {
         },
         body: JSON.stringify(formData),
       });
-
-      const result = await response.json();
-      console.log(result);
+      if (response.status === 200) {
+        console.log('email sent...');
+      } else if (response.status === 404) {
+        console.log("email notfound");
+      } else {
+        console.log("Something went wrong")
+      }
     } catch (error) {
       console.error('Error submitting contact form: ', error);
     }

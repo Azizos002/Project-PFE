@@ -1,0 +1,94 @@
+.new-password-modal {
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    animation: fadeIn 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.new-password-modal>div {
+    width: 600px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.new-password-modal .exit {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.new-password-modal .exit img {
+    width: 32px;
+}
+
+.new-password-modal h2 {
+    font-size: 30px;
+}
+
+.new-password-modal p {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.new-password-modal input {
+    width: 70%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    font-size: 16px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    outline: none;
+}
+
+.NewPassword {
+    width: 50%;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.newPassword:hover {
+    background-color: #014287;
+    font-weight: bolder;
+}
+
+.card-password{
+    display: flex;
+    flex-direction: column;
+}
+
+.card-password input{
+    margin-bottom: 20px;
+    width: 100%;
+}   

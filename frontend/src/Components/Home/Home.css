@@ -1,38 +1,99 @@
-.App {
-    text-align: center;
+.home-container {
+  text-align: center;
+  padding: 20px;
 }
 
-.App-logo {
-    pointer-events: none;
+.home-header {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(16px + 2vmin);
+  color: #333;
+  height: 100vh;
+  background-color: bisque;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.login-link {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3ea76a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
 }
 
-.App-header {
-    /* background-color: #fff; */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: black;
+.login-link:hover {
+  background-color: #2e7d4f;
 }
 
-.App-link {
-    color: #3EA76A;
+.features-section {
+  margin-top: 40px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: lightblue;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
+.features-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
 
-    to {
-        transform: rotate(360deg);
-    }
+.features-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-section li {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Loading Spinner Styles */
+.loading-spinner {
+  display: inline-block;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3ea76a;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .home-header {
+    min-height: 40vh;
+  }
+
+  .login-link {
+    font-size: 16px;
+  }
+
+  .features-section h2 {
+    font-size: 20px;
+  }
+
+  .features-section li {
+    font-size: 16px;
+  }
 }

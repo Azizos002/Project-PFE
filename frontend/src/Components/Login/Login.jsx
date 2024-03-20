@@ -1,104 +1,99 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./Login.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-import { FaEye } from "react-icons/fa6";
-import { FaEyeSlash } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
-import facebook from '../Assets/facebook.png'
-import login from '../Assets/login.svg'
-import google from '../Assets/google.png'
-import github from '../Assets/github.png'
-import goBack from '../Assets/GOback.png'
+import './Login.css'
+import { FaEye, FaEyeSlash } from 'react-icons/fa6';
+import { Link, useNavigate } from 'react-router-dom';
+import facebook from '../Assets/facebook.png';
+import login from '../Assets/login.svg';
+import google from '../Assets/google.png';
+import github from '../Assets/github.png';
+import goBack from '../Assets/GOback.png';
 
-export const Dashboard = () => {
+const validationSchema = Yup.object({
+  email: Yup.string().email('Invalid email address').required('Email is required'),
+  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+});
+
+const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-    password: ""
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const response = await axios.post('http://localhost:5000/auth/login', {
+          email: values.email,
+          password: values.password,
+        });
+        if (response.status === 200) {
+          console.log('Login Success');
+          alert('Login Success');
+          navigate('/Dashboard');
+        } else {
+          console.log('Login Failed');
+        }
+      } catch (error) {
+        console.error('Error during login: ', error);
+      }
+    },
   });
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  //form validation
-  const [errors, setErrors] = useState({});
-
-  useEffect(() => {
-    const validationForm = () => {
-      let valid = true;
-      const newErrors = {};
-      //email
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
-        newErrors.email = 'Invalid email address';
-        valid = false;
-      }
-      //password
-      if (formData.password.length < 6) {
-        newErrors.password = 'Password must be at least 6 characters';
-        valid = false;
-      }
-      setErrors(newErrors);
-      return valid;
-    };
-    validationForm();
-  }, [formData]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (Object.keys(errors).length === 0 && errors.constructor === Object) {
-      console.log('login data submited', formData);
-    } else {
-      console.log('Faileddd');
-    }
-  }
-
-  //Login 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/auth/login', {
-        email: formData.email,
-        password: formData.password,
-      });
-      if (response.status === 200) {
-        console.log('login Success');
-        navigate('/contact');
-      } else {
-        console.log('Login Failed');
-      }
-    } catch (error) {
-      console.error('Error during login :  ', error);
-    }
-  }
 
   return (
     <div className="all">
       <div className="login-main">
         <div className="login-left">
-          <Link to='/' className="goBack">
+          <Link to="/" className="goBack">
             <img src={goBack} alt="GO-back" />
           </Link>
-          <h3>Hi there, Welcome to <br />
+          <h3>
+            Hi there, Welcome to <br />
             Smart-Money
           </h3>
-          <img src={login} alt="classrom" />
+          <img src={login} alt="login-illustration" />
         </div>
         <div className="login-right">
           <div className="login-r-container">
             <div className="login-center">
               <h2>Login</h2>
-              <form onSubmit={handleSubmit}>
-                <input type="email" placeholder="Email" name="email" value={formData.email} onChange={handleChange} />
-                {errors.email && <span className="error">{errors.email}</span>}
+              <form onSubmit={formik.handleSubmit}>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.email && formik.errors.email && (
+                  <span className="error">{formik.errors.email}</span>
+                )}
 
                 <div className="pass-input-div">
-                  <input type={showPassword ? "text" : "password"} name="password" placeholder="password" value={formData.password} onChange={handleChange} />
-                  {showPassword ? <FaEyeSlash onClick={() => { setShowPassword(!showPassword) }} /> : <FaEye onClick={() => { setShowPassword(!showPassword) }} />}
-                  {errors.password && <span className="error">{errors.password}</span>}
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    typeof='password'
+                    name="password"
+                    placeholder="password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  {showPassword ? (
+                    <FaEyeSlash onClick={() => setShowPassword(!showPassword)} />
+                  ) : (
+                    <FaEye onClick={() => setShowPassword(!showPassword)} />
+                  )}
+                  {formik.touched.password && formik.errors.password && (
+                    <span className="error">{formik.errors.password}</span>
+                  )}
                 </div>
 
                 <div className="login-center-options">
@@ -107,24 +102,31 @@ export const Dashboard = () => {
                   </Link>
                 </div>
                 <div className="login-center-buttons">
-                  <button type="button" onClick={handleLogin}>Log In</button>
+                  <button className='loginButton' type="submit">LOGIN</button>
                   <button type="button" className="LoginIMG">
-                    <Link to="https://www.facebook.com/"><img src={facebook} alt="Connect with FACEBOOK" /></Link>
-                    <Link to="https://www.google.com/"><img src={google} alt="Connect with GOOGLE" /></Link>
-                    <Link to="https://github.com/"><img src={github} alt="Connect with GITHUB" /></Link>
+                    <Link to="https://www.facebook.com/">
+                      <img src={facebook} alt="Connect with FACEBOOK" />
+                    </Link>
+                    <Link to="https://www.google.com/">
+                      <img src={google} alt="Connect with GOOGLE" />
+                    </Link>
+                    <Link to="https://github.com/">
+                      <img src={github} alt="Connect with GITHUB" />
+                    </Link>
                   </button>
                 </div>
               </form>
             </div>
 
             <p className="login-bottom-p">
-              Don't have an account ! <br /><Link to="/register">SingUp</Link> NOW
+              Don't have an account ! <br />
+              <Link to="/register">SignUp</Link> NOW
             </p>
           </div>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 
-export default Dashboard;
+export default Login;
