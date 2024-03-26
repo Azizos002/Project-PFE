@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import menu from '../Assets/menu.png';
-// import searchIcon from '../Assets/searchIcon.png'
+import user from '../Assets/user.png';
+import searchIcon from '../Assets/searchIcon.png'
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
 
@@ -13,14 +14,7 @@ const Navbar = () => {
 
   return (
     <nav className='navbar'>
-      <div className="container">
-        {/* <div className="logo">
-          <img src={logo} alt='logo' />
-        </div> */}
 
-        <div className="menu-icon" onClick={handleShowNavbar}>
-          <img src={menu} alt='menu-icon' />
-        </div>
         <div className={`nav-elements ${showNavbar && 'active'}`}>
           <ul>
             <li>
@@ -33,14 +27,21 @@ const Navbar = () => {
               <NavLink to="/Contact">Contact</NavLink>
             </li>
             <li>
-              <NavLink to="/Features">Features</NavLink>
+              <NavLink to="/Search">
+                <img src={searchIcon} alt='search' className='search-icon' />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/Login" className="Nav-Login-button">
+                <img src={user} alt='user-icon' className='iconUsr' />
+                LOGIN
+              </NavLink>
             </li>
           </ul>
         </div>
-      </div>
-      <div className="nav-right">
-        <NavLink to="/Login" className="Nav-Login-button">LOGIN</NavLink>
-      </div>
+        <div className="menu-icon" onClick={handleShowNavbar}>
+          <img src={menu} alt='menu-icon' />
+        </div>
     </nav>
   );
 };

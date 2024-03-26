@@ -78,8 +78,10 @@ const Contact = () => {
       });
       if (response.status === 200) {
         console.log('email sent...');
+        alert('Email Sent Successfully! Thank you for your submission.');
       } else if (response.status === 404) {
         console.log("email notfound");
+        alert('Email not found ! <br /> Go and create one OR check again your email');
       } else {
         console.log("Something went wrong")
       }

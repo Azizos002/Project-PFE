@@ -22,12 +22,14 @@ app.use(express.json());
 app.use(cors());
 
 const userRoutes = require('./Routes/usersRoute');
+const usersFamRoutes = require('./Routes/usersFamRoute');
 const authRoutes = require('./Routes/authRoute');
 const passwordResetRoutes = require('./Routes/passwordResetRoute');
 const contactSubmit = require('./Routes/contactRoute');
 
 // Use Routes 
 app.use('/users', userRoutes);
+app.use('/userfam', usersFamRoutes);
 app.use('/auth', authRoutes);
 app.use('/forgot', passwordResetRoutes);
 app.use('/contact', contactSubmit);

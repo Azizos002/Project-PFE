@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import './Login.css'
-import { FaEye, FaEyeSlash } from 'react-icons/fa6';
+// import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 import { Link, useNavigate } from 'react-router-dom';
-import facebook from '../Assets/facebook.png';
 import login from '../Assets/login.svg';
 import google from '../Assets/google.png';
-import github from '../Assets/github.png';
 import goBack from '../Assets/GOback.png';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer'
 
 const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -19,7 +19,6 @@ const validationSchema = Yup.object({
 
 const Login = () => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +45,20 @@ const Login = () => {
     },
   });
 
+    // Function to handle Google OAuth authentication
+    const handleGoogleAuth = async () => {
+      try {
+        // Redirect the user to the Google OAuth authentication route
+        window.location.href = 'http://localhost:3000/auth/google';
+      } catch (error) {
+        console.error('Error during Google authentication:', error);
+        // Handle error if needed
+      }
+    };
+
   return (
+    <>
+    <Navbar />
     <div className="all">
       <div className="login-main">
         <div className="login-left">
@@ -54,15 +66,16 @@ const Login = () => {
             <img src={goBack} alt="GO-back" />
           </Link>
           <h3>
-            Hi there, Welcome to <br />
-            Smart-Money
+            Welcome to Smart-Money
           </h3>
+          <p>Your way to grow up !</p>
           <img src={login} alt="login-illustration" />
         </div>
         <div className="login-right">
           <div className="login-r-container">
             <div className="login-center">
               <h2>Login</h2>
+              
               <form onSubmit={formik.handleSubmit}>
                 <input
                   type="email"
@@ -78,19 +91,18 @@ const Login = () => {
 
                 <div className="pass-input-div">
                   <input
-                    type={showPassword ? 'text' : 'password'}
-                    typeof='password'
+                    type='password'
                     name="password"
                     placeholder="password"
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  {showPassword ? (
+                  {/* {showPassword ? (
                     <FaEyeSlash onClick={() => setShowPassword(!showPassword)} />
                   ) : (
                     <FaEye onClick={() => setShowPassword(!showPassword)} />
-                  )}
+                  )} */}
                   {formik.touched.password && formik.errors.password && (
                     <span className="error">{formik.errors.password}</span>
                   )}
@@ -103,16 +115,8 @@ const Login = () => {
                 </div>
                 <div className="login-center-buttons">
                   <button className='loginButton' type="submit">LOGIN</button>
-                  <button type="button" className="LoginIMG">
-                    <Link to="https://www.facebook.com/">
-                      <img src={facebook} alt="Connect with FACEBOOK" />
-                    </Link>
-                    <Link to="https://www.google.com/">
+                  <button type="button" className="LoginIMG" onClick={handleGoogleAuth} >
                       <img src={google} alt="Connect with GOOGLE" />
-                    </Link>
-                    <Link to="https://github.com/">
-                      <img src={github} alt="Connect with GITHUB" />
-                    </Link>
                   </button>
                 </div>
               </form>
@@ -126,6 +130,8 @@ const Login = () => {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

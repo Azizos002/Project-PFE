@@ -9,7 +9,7 @@ import Features from './Components/Features/Features';
 import ResetPass from './Components/Reset-Pass/ResetPass';
 import NewPass from './Components/NewPass/NewPass';
 import Dashboard from './Components/Dashboard/Dashboard';
-import Nav from './Components/Dashboard/Nav';
+import RegisterFam from './Components/RegisterFam/RegisterFam';
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Register />} />
+        <Route  path='/registerFam' element={<RegisterFam />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login />} />
@@ -24,7 +25,6 @@ function App() {
         <Route path='/ResetPass' element={<ResetPass />} />
         <Route path='/NewPass' element={<NewPass />} />
         <Route path='/Dashboard' element={<Dashboard />} />
-        <Route path='/Nav'element={<Nav />} />
       </Routes>
     </Router>
   );

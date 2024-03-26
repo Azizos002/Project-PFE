@@ -6,7 +6,9 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   otp: String,
-  otpExpiration: Date
+  otpExpiration: Date,
+  // New fields for Google OAuth
+  googleId: { type: String, unique: true }
 });
 
 userSchema.index({ email: 1 }, { unique: true, background: true });

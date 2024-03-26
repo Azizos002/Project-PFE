@@ -1,0 +1,12 @@
+.starloul{
+    display: flex;
+    flex-direction: row;
+}
+
+/* form input[name='Id'] {
+    margin-right: 20px !important;
+} */
+
+.idid{
+    margin-right: 10px;
+}
