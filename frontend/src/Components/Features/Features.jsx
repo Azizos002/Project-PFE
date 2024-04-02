@@ -1,11 +1,14 @@
 import React from 'react'
-import Navbar from '../Navbar/Navbar'
+import './Features.css'
+import Footer from '../Footer/Footer'
 
 const Features = () => {
   return (
     <>
-        <Navbar />
+      <div>
         <h2>Features</h2>
+      </div>
+      <Footer />
     </>
   )
 }

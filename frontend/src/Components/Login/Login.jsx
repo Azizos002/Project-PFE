@@ -9,7 +9,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import login from '../Assets/login.svg';
 import google from '../Assets/google.png';
 import goBack from '../Assets/GOback.png';
-import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer'
 
 const validationSchema = Yup.object({
@@ -58,7 +57,6 @@ const Login = () => {
 
   return (
     <>
-    <Navbar />
     <div className="all">
       <div className="login-main">
         <div className="login-left">

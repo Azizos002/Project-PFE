@@ -1,23 +1,78 @@
+.a{
+  background-image: url('../Assets//home.jpg');
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  height: 100vh;
+}
+
+.home-container,
+.rightS {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
 .home-container {
-  text-align: center;
-  padding: 20px;
+  align-items: center;
 }
 
 .home-header {
-  min-height: 60vh;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   font-size: calc(16px + 2vmin);
-  color: #333;
-  height: 100vh;
-  background-color: bisque;
+  color: #fff;
+  margin-left: 20px;
+}
+
+.quote {
+  font-size: 24px;
+  font-style: oblique;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.author {
+  font-size: 18px;
+  font-weight: bold;
+  color: #dfdede; 
+  text-align: center;
+}
+
+.Intro {
+  font-size: 15px;
+  font-style: italic;
+  color: #b8b8b8;
+  line-height: 1.5;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.started {
+  margin-top: 20px;
+  background-color: #fff; /* Adjust color as needed */
+  padding-top: 0px !important;
+  padding: 10px; /* Add padding as needed */
+  border-radius: 5px; /* Add border-radius for rounded corners */
+  display: inline-block; /* Ensures the background color covers the entire content */
+  cursor: pointer;
+}
+.next{
+  position: relative;
+  top: 10px;
+  width: 32px;
+  height: auto;
 
 }
 
 .login-link {
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-right: 10px;
   padding: 10px 20px;
   background-color: #3ea76a;
   color: #fff;
@@ -32,33 +87,6 @@
   background-color: #2e7d4f;
 }
 
-.features-section {
-  margin-top: 40px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: lightblue;
-}
-
-.features-section h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.features-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.features-section li {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-/* Loading Spinner Styles */
 .loading-spinner {
   display: inline-block;
   border: 4px solid rgba(0, 0, 0, 0.1);
@@ -67,6 +95,11 @@
   width: 30px;
   height: 30px;
   animation: spin 1s linear infinite;
+}
+
+.RightBG{
+  position: relative;
+  bottom: 20px;
 }
 
 @keyframes spin {
@@ -78,6 +111,8 @@
     transform: rotate(360deg);
   }
 }
+
+
 
 /* Responsive Styles */
 @media (max-width: 600px) {

@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home/Home'
@@ -13,20 +14,22 @@ import RegisterFam from './Components/RegisterFam/RegisterFam';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/register' element={<Register />} />
-        <Route  path='/registerFam' element={<RegisterFam />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='features' element={<Features />} />
-        <Route path='/ResetPass' element={<ResetPass />} />
-        <Route path='/NewPass' element={<NewPass />} />
-        <Route path='/Dashboard' element={<Dashboard />} />
-      </Routes>
-    </Router>
+    <div>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/registerFam' element={<RegisterFam />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='features' element={<Features />} />
+          <Route path='/ResetPass' element={<ResetPass />} />
+          <Route path='/NewPass' element={<NewPass />} />
+          <Route path='/Dashboard' element={<Dashboard />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

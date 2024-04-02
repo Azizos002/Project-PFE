@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../Navbar/Navbar';
 import './Contact.css';
 
 const Contact = () => {
@@ -92,7 +91,6 @@ const Contact = () => {
 
   return (
     <>
-      <Navbar />
       <div className="form-container">
         <form onSubmit={handleSubmit} className="form-container">
           <h1>Get in Touch</h1>

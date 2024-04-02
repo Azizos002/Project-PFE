@@ -1,47 +1,46 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
+
 import './Navbar.css';
-import menu from '../Assets/menu.png';
-import user from '../Assets/user.png';
-import searchIcon from '../Assets/searchIcon.png'
+
+import logo from '../Assets/hand.png';
+
 const Navbar = () => {
-  const [showNavbar, setShowNavbar] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-
-  const handleShowNavbar = () => {
-    setShowNavbar((prevShowNavbar) => !prevShowNavbar);
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
-    <nav className='navbar'>
-
-        <div className={`nav-elements ${showNavbar && 'active'}`}>
-          <ul>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/About">About</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Contact">Contact</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Search">
-                <img src={searchIcon} alt='search' className='search-icon' />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/Login" className="Nav-Login-button">
-                <img src={user} alt='user-icon' className='iconUsr' />
-                LOGIN
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-        <div className="menu-icon" onClick={handleShowNavbar}>
-          <img src={menu} alt='menu-icon' />
-        </div>
+    <nav className="navbar">
+      <div className="navbar__left">
+        <img src={logo} alt="Smart Money Logo" className="navbar__logo" />
+        <span className="navbar__title">S-Money</span>
+      </div>
+      <div className={`navbar__middle ${isOpen ? 'active' : ''}`}>
+        <ul className={`navbar__list ${isOpen ? 'active' : ''}`}>
+          <li className="navbar__item">
+            <NavLink to="/" className="navbar__link navbar__active">Home</NavLink>
+          </li>
+          <li className="navbar__item">
+            <NavLink to="/about" className="navbar__link navbar__active">About</NavLink>
+          </li>
+          <li className="navbar__item">
+            <NavLink to="/features" className="navbar__link navbar__active">Features</NavLink>
+          </li>
+          <li className="navbar__item">
+            <NavLink to="/contact" className="navbar__link navbar__active">Contact</NavLink>
+          </li>
+        </ul>
+      </div>
+      <div className="navbar__right">
+        <button className="navbar__button">Login</button>
+      </div>
+      <div className="toggleNavbar" onClick={toggleNavbar}>
+        {isOpen ? <FaTimes /> : <FaBars />}
+      </div>
     </nav>
   );
 };

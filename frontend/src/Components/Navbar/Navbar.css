@@ -1,69 +1,102 @@
 .navbar {
+  background-image: linear-gradient(to right top, #070508, #070508, #080609, #080609, #080609);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem;
+}
+
+.navbar__logo {
+  width: 40px;
+  height: auto;
+}
+
+.navbar__title {
+  color: white;
+  margin-left: 0.5rem;
+  font-size: 28px;
+  font-weight: bolder;
+}
+
+.navbar__left{
+  display: flex;
+}
+
+.navbar__middle {
+  flex-grow: 1;
+}
+
+.navbar__list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+}
+
+.navbar__item {
+  margin-right: 30px;
+}
+
+.navbar__link {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.navbar__link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar__button {
+  padding: 10px 20px;
+  background-color: #19c970;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border-width: 0px;
+}
+
+.navbar__button:hover {
+  background-color: darkgreen;
+}
+
+.toggleNavbar {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .navbar__list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #282c34;
+    z-index: 1;
+  }
+
+  .navbar__list.active {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
   }
-  
-  .nav-elements {
-    display: flex;
-    align-items: center;
+
+  .navbar__item {
+    margin: 10px 0;
   }
-  
-  .nav-elements ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
+
+  .toggleNavbar {
+    display: block;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
   }
-  
-  .nav-elements ul li {
-    margin-right: 1rem;
-  }
-  
-  .menu-icon {
-    display: none; /* Hide the menu icon for now */
-  }
-  
-  .Nav-Login-button {
-    background-color: #001e2b; /* Background color for the login button */
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-  }
-  
-  .Nav-Login-button img {
-    vertical-align: middle;
-  }
-  
-  .search-icon {
-    background-color: #004c64; /* Lighter background color for the search icon */
-    padding: 0.5rem;
-  }
-  
-  @media (max-width: 768px) {
-    .menu-icon {
-      display: block; /* Display the menu icon on smaller screens */
-    }
-    
-    .nav-elements {
-      display: none;
-    }
-  
-    .nav-elements.active {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 4rem;
-      right: 0;
-      background-color: #333;
-      padding: 1rem;
-      z-index: 1;
-    }
-  
-    .nav-elements.active ul li {
-      margin-bottom: 0.5rem;
-    }
-  }
-  
+}
