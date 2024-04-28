@@ -9,7 +9,7 @@ import './RegisterFam.css'
 import register from '../Assets/register.svg';
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import goBack from '../Assets/GOback2.png';
+import goBack from '../Assets/GOback.png';
 
 
 const RegisterFam = () => {

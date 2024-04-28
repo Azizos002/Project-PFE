@@ -17,7 +17,10 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar__left">
         <img src={logo} alt="Smart Money Logo" className="navbar__logo" />
-        <span className="navbar__title">S-Money</span>
+        <NavLink to="/" className="navbar__title">
+        <span >S-Money</span>
+        </NavLink>
+
       </div>
       <div className={`navbar__middle ${isOpen ? 'active' : ''}`}>
         <ul className={`navbar__list ${isOpen ? 'active' : ''}`}>
@@ -36,7 +39,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar__right">
-        <button className="navbar__button">Login</button>
+        <NavLink to="/login" className='buttonLogin'>
+          <button className="navbar__button">Login</button>
+        </NavLink>
       </div>
       <div className="toggleNavbar" onClick={toggleNavbar}>
         {isOpen ? <FaTimes /> : <FaBars />}

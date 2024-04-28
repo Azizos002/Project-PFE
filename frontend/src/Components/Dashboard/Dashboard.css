@@ -1,0 +1,18 @@
+.dashboard {
+    display: flex;
+    justify-content: flex-start; /* Align dashboard content to the left */
+    height: 100vh; /* Set dashboard height to fill the viewport */
+  }
+  
+  .content {
+    flex-grow: 1; /* Allow content to grow and take up remaining space */
+    padding: 20px; /* Add padding for spacing */
+  }
+  
+  .testSide {
+    background-color: #f0f0f0; /* Example background color */
+    padding: 20px; /* Add padding for spacing */
+    border: 1px solid #ccc; /* Example border */
+    border-radius: 5px; /* Example border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example box shadow */
+  }

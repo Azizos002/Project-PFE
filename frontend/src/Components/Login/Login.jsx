@@ -10,6 +10,7 @@ import login from '../Assets/login.svg';
 import google from '../Assets/google.png';
 import goBack from '../Assets/GOback.png';
 import Footer from '../Footer/Footer'
+import Navbar from '../Navbar/Navbar';
 
 const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -19,7 +20,7 @@ const validationSchema = Yup.object({
 const Login = () => {
   const navigate = useNavigate();
 
-  const formik = useFormik({
+  const formik = useFormik({ 
     initialValues: {
       email: '',
       password: '',
@@ -27,14 +28,21 @@ const Login = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const response = await axios.post('http://localhost:5000/auth/login', {
+        const response = await axios.post('http://localhost:5000/login/submit', {
           email: values.email,
           password: values.password,
         });
+        if(response.status === 404){
+          alert('Password Incorrect');
+        }
         if (response.status === 200) {
           console.log('Login Success');
           alert('Login Success');
           navigate('/Dashboard');
+          
+          localStorage.setItem('username', response.data.username);
+          localStorage.setItem('token', response.data.token);
+
         } else {
           console.log('Login Failed');
         }
@@ -57,16 +65,17 @@ const Login = () => {
 
   return (
     <>
+    <Navbar />
     <div className="all">
       <div className="login-main">
         <div className="login-left">
           <Link to="/" className="goBack">
             <img src={goBack} alt="GO-back" />
           </Link>
-          <h3>
+          {/* <h3>
             Welcome to Smart-Money
           </h3>
-          <p>Your way to grow up !</p>
+          <p>Your way to grow up !</p> */}
           <img src={login} alt="login-illustration" />
         </div>
         <div className="login-right">

@@ -1,0 +1,13 @@
+.PagesContent{
+    position: fixed;
+    left: 200px;
+    top: 50px;
+    width: calc(100% - 250px);
+}
+
+.TitlePages{
+    font-size: 40px;
+    padding: 20px;
+    font-weight: 900;
+    font-style: initial;
+}

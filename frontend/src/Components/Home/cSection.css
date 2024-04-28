@@ -1,0 +1,146 @@
+/* Base styles for .c */
+.c {
+    background-image: url('../Assets/home.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  /* About header styles */
+  .aboutHeader {
+    font-size: 40px;
+    font-weight: bolder;
+    position: relative;
+    bottom: 25px;
+    color: #fff;
+  }
+  
+  /* About section styles */
+  .aboutSection {
+    width: 100%;
+    height: 80%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+  
+  /* Left About section styles */
+  .leftAbout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0.5;
+    height: 90%;
+    margin: 20px;
+    margin-top: 0px;
+  }
+  
+  /* Intro styles */
+  .Intro {
+    margin-top: 0px;
+    margin-bottom: 30px;
+  }
+  
+  /* Header Intro styles */
+  .headerIntro {
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: black;
+  }
+  
+  /* About Intro styles */
+  .aboutIntro {
+    color: black;
+    font-size: 15px;
+  }
+  
+  /* Services About styles */
+  .servicesAbout {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .servicesAbout::before {
+    content: "\2713";
+    color: #3ea76a;
+    margin-right: 5px;
+    font-size: 20px;
+  }
+  
+  /* Service Description styles */
+  .serviceDescription {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  /* Right About section styles */
+  .rightAbout {
+    display: flex;
+    justify-content: center;
+    flex: 0.5;
+  }
+  
+  /* About Image styles */
+  .aboutImg {
+    width: 500px;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* .d styles */
+  .d {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Why header styles */
+  .whyHeader {
+    font-size: 40px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 1200px) {
+    .aboutHeader {
+      font-size: 36px;
+    }
+  
+    .aboutImg {
+      width: 400px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .aboutHeader {
+      font-size: 32px;
+    }
+  
+    .leftAbout,
+    .rightAbout {
+      flex: 1;
+      margin: 10px;
+    }
+  
+    .aboutImg {
+      width: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .aboutHeader {
+      font-size: 28px;
+    }
+  
+    .aboutImg {
+      width: 250px;
+    }
+  }
+  

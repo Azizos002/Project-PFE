@@ -1,0 +1,79 @@
+.sidebar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    background-image: linear-gradient(to right top, #070508, #070508, #080609, #080609, #080609);
+    color: #fff;
+    height: 100vh;
+    transition: left 0.3s;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.sidebar-header{
+    display: flex;
+    align-items: center;
+    padding-bottom  : 10px;
+    border-bottom: solid 3px #222;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.titleDashboard{
+    font-size: 20px;
+    font-weight: bold;
+}
+.sidebar-menu {
+
+    list-style-type: none;
+    padding-top: 8.5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sidebar-item a{
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    text-decoration: none;
+    color: white;
+}
+
+.sidebar-item:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-item .text {
+    display: none;
+}
+
+.sidebar-item:hover .text {
+    display: block;
+    justify-content: center;
+}
+
+.icon {
+    margin-right: 20px;
+    height: 24px;
+    color: #3ea76a;
+}
+
+.SideText{
+    color: #c1c1c1;
+    font-style: italic;
+    margin: 10px 0 5px 10px;
+    cursor: default;
+}
+
+.footerDash {
+    background-color: #222;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.8em;
+    width: 200px;
+}

@@ -1,0 +1,115 @@
+.navbarDash{
+    background-color: #f1f1f1;
+    position: fixed;
+    top: 0;
+    left: 200px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: solid 2px #333;
+}
+.navbar__title{
+    display: flex;
+    align-items: center;
+}
+
+.navbarDashboard__left{
+    display: flex;
+}
+
+.titleDashboard{
+    margin-left: 7px;
+}
+
+.navbarDashboard__right {
+    position: fixed;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.WelcomeDash{
+    margin-left: 20px;
+    font-size: 24px;
+}
+
+.icon-Navbar{
+    color:#2e7d4f ;
+    height: 24px;
+    padding-right: 10px;
+}
+
+.spanTitleUsername{
+    font-size: 28px;
+    font-weight: bold;
+    color: #3ea76a;
+}
+
+.navbarDashboard__button {
+    background-image: linear-gradient(to right top, #070508, #070508, #080609, #080609, #080609);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+.navbarDashboard__button:hover {
+    background-image: none;
+    background-color: #2e7d4f;
+    transition: 0.5s;
+    .spanUsername{
+        color: white;
+    }
+    .icon-Navbar{
+        color: white;
+    }
+}
+
+.profile-dropdown {
+    position: relative;
+}
+
+.UserPic {
+    width: 20px;
+
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.spanUsername {
+    color: #3ea76a;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.dropdown-content {
+    position: absolute;
+    width: 150px; 
+    font-size: 15px;
+    top: 150%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #2e7d4f;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.LogoutButton{
+    background-color: #3ea76a;
+    width: 100%;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+    display: block;
+    padding: 15px 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+    background-color: #3ea76a;
+    font-weight: bolder;
+}

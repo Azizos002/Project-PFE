@@ -1,42 +1,12 @@
-.about-page {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0 auto;
-    max-width: 800px;
-    padding: 20px;
-  }
-  
-  .about-title {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .about-intro {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-  }
-  
-  .mission-title,
-  .team-title,
-  .products-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .mission-text,
-  .team-text,
-  .products-intro,
-  .products-text {
-    font-size: 1rem;
-    margin-bottom: 20px;
-  }
-  
-  .products-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .product-item {
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
+.about-container {
+  padding: 40px 20px;
+  height: 100vh;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.delivery-date {
+  margin-top: 40px;
+}

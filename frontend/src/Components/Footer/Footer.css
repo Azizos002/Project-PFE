@@ -1,5 +1,5 @@
 .footer {
-    background-color: #282c34;
+    background-image: linear-gradient(to right top, #070508, #070508, #080609, #080609, #080609);
     color: #fff;
     padding: 2rem;
     display: flex;

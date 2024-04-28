@@ -15,7 +15,7 @@ const forgotPasswordController = {
             const otp = generateNumericOTP(6);
             
             user.otp = otp;
-            user.otpExpiration = new Date(Date.now() + 10 * 60 * 1000); // OTP expires in 10 minutes
+            user.otpExpiration = new Date(Date.now() + 10 * 60 * 1000);
             await user.save();
             console.log('OTP code generated:', otp);
 

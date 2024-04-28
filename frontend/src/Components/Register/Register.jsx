@@ -8,7 +8,7 @@ import register from '../Assets/register.svg';
 import './Register.css'
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import goBack from '../Assets/GOback2.png';
+import goBack from '../Assets/GOback.png';
 
 
 const Register = () => {
@@ -42,11 +42,17 @@ const Register = () => {
           password: values.password,
         });
 
-        if (response.status >= 200 && response.status < 300) {
+        if (response.status === 200 ) {
           console.log('Registration successful');
           alert('Registration successful');
           navigate('/login');
-        } else {
+        }
+
+        else if (response.status === 409) {
+          alert('User already exists <br />  change the Username OR Email' );
+        }
+
+        else {
           console.error('Registration Failed');
         }
       } catch (e) {
@@ -104,7 +110,7 @@ const Register = () => {
             </div>
           </div>
           <div className="login-left">
-            <Link to="/" className="goBack">
+            <Link to="/login" className="goBack">
               <img src={goBack} alt="GO-back" />
             </Link>
             <h3>

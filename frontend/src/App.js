@@ -11,6 +11,10 @@ import ResetPass from './Components/Reset-Pass/ResetPass';
 import NewPass from './Components/NewPass/NewPass';
 import Dashboard from './Components/Dashboard/Dashboard';
 import RegisterFam from './Components/RegisterFam/RegisterFam';
+import NavbarDashboard from './Components/pages/NavbarDashboard';
+import SideBar from './Components/pages/SideBar/SideBar';
+import Income from './Components/pages/SideBar/Content/Income/Income';
+import Tax from './Components/pages/SideBar/Content/Tax/Tax';
 
 function App() {
   return (
@@ -27,6 +31,12 @@ function App() {
           <Route path='/ResetPass' element={<ResetPass />} />
           <Route path='/NewPass' element={<NewPass />} />
           <Route path='/Dashboard' element={<Dashboard />} />
+          <Route path='/NavbarDashboard' element={<NavbarDashboard />} />
+          <Route path='/SideBar' element={<SideBar />} />
+          <Route path='/Dashboard/Income' element={<Income />} />
+          <Route path='/Dashboard/Tax' element={<Tax />} />
+
+
         </Routes>
       </Router>
     </div>

@@ -1,0 +1,51 @@
+.income-container {
+    margin: 20px;
+    width: 100%;
+
+}
+
+.income-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Thead td{
+    color: green;
+}
+
+.income-table th,
+.income-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.income-table th {
+    background-color: #f2f2f2;
+    color: #3ea76a;
+}
+
+.amount-input {
+    width: 30%;
+}
+
+.amount-input:hover {
+    border: solid 2px #3ea76a;
+
+}
+
+.DescriptionTitle{
+    text-align: left !important;
+    font-weight: 500;
+}
+
+.DescTitle{
+    text-align: left !important;
+}
+
+.income-table select {
+    width: 80%;
+    padding: 10px;
+    border: solid 2px #3ea76a ;
+    border-radius: 5px;
+}

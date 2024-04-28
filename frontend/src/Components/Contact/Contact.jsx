@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Contact.css';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -91,70 +93,73 @@ const Contact = () => {
 
   return (
     <>
-      <div className="form-container">
-        <form onSubmit={handleSubmit} className="form-container">
-          <h1>Get in Touch</h1>
-          <input
-            
-            placeholder="First Name"
-            type="text"
-            className="contact-input"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-          {errors.firstName && <span className="error">{errors.firstName}</span>}
+      <Navbar />
+      <div className="contact">
+        <div className="form-container">
+          <form onSubmit={handleSubmit} className="form-container">
+            <h1>Get in Touch</h1>
+            <input
+              placeholder="First Name"
+              type="text"
+              className="contact-input"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+            />
+            {errors.firstName && <span className="error">{errors.firstName}</span>}
 
-          <input
-            
-            placeholder="Last Name"
-            type="text"
-            className="contact-input"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-          {errors.lastName && <span className="error">{errors.lastName}</span>}
+            <input
 
-          <input
-            
-            placeholder="Email"
-            type="email"
-            className="contact-input"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <span className="error">{errors.email}</span>}
+              placeholder="Last Name"
+              type="text"
+              className="contact-input"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+            />
+            {errors.lastName && <span className="error">{errors.lastName}</span>}
 
-          <input
-            
-            type="tel"
-            placeholder="Contact Number"
-            className="contact-input"
-            name="contactNumber"
-            value={formData.contactNumber}
-            onChange={handleChange}
-          />
-          {errors.contactNumber && (
-            <span className="error">{errors.contactNumber}</span>
-          )}
+            <input
 
-          <textarea
-            rows={10}
-            placeholder="Your Message"
-            className="contact-input"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-          />
-          {errors.message && <span className="error">{errors.message}</span>}
+              placeholder="Email"
+              type="email"
+              className="contact-input"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            {errors.email && <span className="error">{errors.email}</span>}
 
-          <button className="fancy" type="submit">
-            Send
-          </button>
-        </form>
+            <input
+
+              type="tel"
+              placeholder="Contact Number"
+              className="contact-input"
+              name="contactNumber"
+              value={formData.contactNumber}
+              onChange={handleChange}
+            />
+            {errors.contactNumber && (
+              <span className="error">{errors.contactNumber}</span>
+            )}
+
+            <textarea
+              rows={10}
+              placeholder="Your Message"
+              className="contact-input"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+            />
+            {errors.message && <span className="error">{errors.message}</span>}
+
+            <button className="fancy" type="submit">
+              Send
+            </button>
+          </form>
+        </div>
       </div>
+      <Footer />
     </>
   );
 };

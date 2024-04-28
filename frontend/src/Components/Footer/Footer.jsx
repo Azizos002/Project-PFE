@@ -19,7 +19,7 @@ const footer = () => {
           <a href="/contact" className="footer__link">Contact</a>
         </li>
         <li className="footer__link-item">
-          <a href="/features" className="footer__link">features</a>
+          <a href="/features" className="footer__link">Features</a>
         </li>
       </ul>
       <ul className="footer__social-links">

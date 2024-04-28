@@ -9,7 +9,7 @@
 }
 
 .login-main {
-    box-shadow: 10px 10px 10px rgba(0, 0, 0.2, 0.2);
+    box-shadow: 10px 10px 70px rgba(0, 133, 27, 0.5);
     width: 60%;
     height: 80%;
     display: flex;
@@ -19,19 +19,22 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    margin-top: 50px;
 
 }
 
 .login-left {
     width: 400px;
-    height: 90vh;
+    height: 90vh !important;
     display: flex;
     flex-grow: 0.3;
     flex-direction: column;
     justify-content: center;
-    background-image: url('../Assets/bg.jpeg');
-    background-size: cover; 
+    background-image: url('../Assets/wave.png');
+    background-size: cover;
     background-position: center;
+    background-color: #F0F0F0;
+    z-index: -1;
 }
 
 .goBack img {
@@ -40,6 +43,12 @@
     position: relative;
     top: 10px;
     left: 10px;
+    background: #3EA76A;
+    border-radius: 50%;
+}
+
+.goBack img:hover{
+    background: #084a23;
 }
 
 .login-right h2{
@@ -50,10 +59,10 @@
     padding-top: 10%;
     font-size: 35px;
     text-align: center;
-    color: #F0F0F0;
+    color: #001e2b;
     margin-bottom: 0;
-
 }
+
 .login-left p{
     color: #F0F0F0;
     font-size: 20px;

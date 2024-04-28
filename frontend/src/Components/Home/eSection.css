@@ -1,0 +1,129 @@
+.e{
+    background-image: url('../Assets/home.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat ;
+    background-position: center;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eContainer{
+  height: 80%;
+  width: 80%;
+  display: flex;
+}
+
+.contactSection{
+  background-color: rgba(255, 255, 255, 0.1); /* Fallback color */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.contactQ{
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: white;
+}
+
+
+.contactLabel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 2px white ;
+  padding: 10px;
+  cursor: pointer;
+}
+
+
+.contactH{
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.LinkContact{
+  text-decoration: none;
+}
+
+.contactLabel:hover{
+  background-color: #3ea76a;
+}
+
+
+
+
+
+
+
+
+
+.underline{
+    height: 2px;
+    background: aqua;
+    width: 10rem;
+    border-radius: 5px;
+}
+
+
+
+.contact-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .form-group-contact {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  label {
+    display: block;
+    transition: transform 0.3s ease-out, font-size 0.3s ease-out;
+    position: absolute;
+    left: 10px;
+    color: black;
+
+  }
+  
+  .focused {
+    transform: translateY(-45px);
+    font-size: 1.2rem;
+    color: white;
+    left: 5px;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    display: block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
