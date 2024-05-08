@@ -1,8 +1,9 @@
 .PagesContent{
-    position: fixed;
+    position: absolute;
     left: 200px;
     top: 50px;
     width: calc(100% - 250px);
+    z-index: 5;
 }
 
 .TitlePages{

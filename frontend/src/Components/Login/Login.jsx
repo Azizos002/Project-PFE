@@ -20,7 +20,7 @@ const validationSchema = Yup.object({
 const Login = () => {
   const navigate = useNavigate();
 
-  const formik = useFormik({ 
+  const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
@@ -32,16 +32,18 @@ const Login = () => {
           email: values.email,
           password: values.password,
         });
-        if(response.status === 404){
+        if (response.status === 402) {
           alert('Password Incorrect');
         }
         if (response.status === 200) {
           console.log('Login Success');
           alert('Login Success');
           navigate('/Dashboard');
-          
+
           localStorage.setItem('username', response.data.username);
           localStorage.setItem('token', response.data.token);
+          // // Fetch user's income data
+          // await fetchUserIncomeData();
 
         } else {
           console.log('Login Failed');
@@ -52,92 +54,110 @@ const Login = () => {
     },
   });
 
-    // Function to handle Google OAuth authentication
-    const handleGoogleAuth = async () => {
-      try {
-        // Redirect the user to the Google OAuth authentication route
-        window.location.href = 'http://localhost:3000/auth/google';
-      } catch (error) {
-        console.error('Error during Google authentication:', error);
-        // Handle error if needed
-      }
-    };
+
+  // Function to fetch user's income data
+// const fetchUserIncomeData = async () => {
+//   try {
+//       const token = localStorage.getItem('token');
+//       const response = await fetch('/api/income', {
+//           headers: {
+//               'Authorization': `Bearer ${token}`
+//           }
+//       });
+//       const data = await response.json();
+//       console.log('User income data:', data);
+      // Update state with user income data and display in tables
+//   } catch (error) {
+//       console.error('Failed to fetch user income data:', error);
+//   }
+// };
+
+  // Function to handle Google OAuth authentication
+  const handleGoogleAuth = async () => {
+    try {
+      // Redirect the user to the Google OAuth authentication route
+      window.location.href = 'http://localhost:3000/auth/google';
+    } catch (error) {
+      console.error('Error during Google authentication:', error);
+      // Handle error if needed
+    }
+  };
 
   return (
     <>
-    <Navbar />
-    <div className="all">
-      <div className="login-main">
-        <div className="login-left">
-          <Link to="/" className="goBack">
-            <img src={goBack} alt="GO-back" />
-          </Link>
-          {/* <h3>
+      <Navbar />
+      <div className="all">
+        <div className="login-main">
+          <div className="login-left">
+            <Link to="/" className="goBack">
+              <img src={goBack} alt="GO-back" />
+            </Link>
+            {/* <h3>
             Welcome to Smart-Money
           </h3>
           <p>Your way to grow up !</p> */}
-          <img src={login} alt="login-illustration" />
-        </div>
-        <div className="login-right">
-          <div className="login-r-container">
-            <div className="login-center">
-              <h2>Login</h2>
-              
-              <form onSubmit={formik.handleSubmit}>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-                {formik.touched.email && formik.errors.email && (
-                  <span className="error">{formik.errors.email}</span>
-                )}
+            <img src={login} alt="login-illustration" />
+          </div>
+          <div className="login-right">
+            <div className="login-r-container">
+              <div className="login-center">
+                <h2>Login</h2>
 
-                <div className="pass-input-div">
+                <form onSubmit={formik.handleSubmit}>
                   <input
-                    type='password'
-                    name="password"
-                    placeholder="password"
-                    value={formik.values.password}
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  {/* {showPassword ? (
+                  {formik.touched.email && formik.errors.email && (
+                    <span className="error">{formik.errors.email}</span>
+                  )}
+
+                  <div className="pass-input-div">
+                    <input
+                      type='password'
+                      name="password"
+                      placeholder="password"
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {/* {showPassword ? (
                     <FaEyeSlash onClick={() => setShowPassword(!showPassword)} />
                   ) : (
                     <FaEye onClick={() => setShowPassword(!showPassword)} />
                   )} */}
-                  {formik.touched.password && formik.errors.password && (
-                    <span className="error">{formik.errors.password}</span>
-                  )}
-                </div>
+                    {formik.touched.password && formik.errors.password && (
+                      <span className="error">{formik.errors.password}</span>
+                    )}
+                  </div>
 
-                <div className="login-center-options">
-                  <Link to="/ResetPass" className="forgot-pass-link">
-                    forget password ?
-                  </Link>
-                </div>
-                <div className="login-center-buttons">
-                  <button className='loginButton' type="submit">LOGIN</button>
-                  <button type="button" className="LoginIMG" onClick={handleGoogleAuth} >
+                  <div className="login-center-options">
+                    <Link to="/ResetPass" className="forgot-pass-link">
+                      forget password ?
+                    </Link>
+                  </div>
+                  <div className="login-center-buttons">
+                    <button className='loginButton' type="submit">LOGIN</button>
+                    <button type="button" className="LoginIMG" onClick={handleGoogleAuth} >
                       <img src={google} alt="Connect with GOOGLE" />
-                  </button>
-                </div>
-              </form>
-            </div>
+                    </button>
+                  </div>
+                </form>
+              </div>
 
-            <p className="login-bottom-p">
-              Don't have an account ! <br />
-              <Link to="/register">SignUp</Link> NOW
-            </p>
+              <p className="login-bottom-p">
+                Don't have an account ! <br />
+                <Link to="/register">SignUp</Link> NOW
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 };

@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     border-bottom: solid 2px #333;
+    z-index: 100;
 }
 .navbar__title{
     display: flex;
@@ -92,7 +93,7 @@
     border: 1px solid #2e7d4f;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+    /* z-index: 10; */
 }
 
 .LogoutButton{

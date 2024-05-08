@@ -7,7 +7,7 @@ const app = express();
 
 const PORT = process.env.PORT;
 const DataBase = process.env.DATABASE_URI;
-//connection to MongoDB
+
 mongoose
         .connect(DataBase)
     .then(() => {
@@ -20,24 +20,25 @@ mongoose
 app.use(express.json());
 app.use(cors());
 
-const jwtMiddleware = require('./middleware/auth'); // Import JWT middleware
+const jwtMiddleware = require('./middleware/auth');
 
-app.use('/protectedRoute', jwtMiddleware); // Protect the route
+app.use('/protectedRoute', jwtMiddleware);
 
 
 const userRoutes = require('./Routes/usersRoute');
-const usersFamRoutes = require('./Routes/usersFamRoute');
 const passwordResetRoutes = require('./Routes/passwordResetRoute');
 const contactSubmit = require('./Routes/contactRoute');
-const loginRoute = require('./Routes/loginRoute'); // Import login controller
+const loginRoute = require('./Routes/loginRoute');
+const incomeRoute = require('./Routes/incomeRoute')
 
 
 // Use Routes 
 app.use('/users', userRoutes);
-app.use('/userfam', usersFamRoutes);
+app.use('/login', loginRoute);
 app.use('/forgot', passwordResetRoutes);
 app.use('/contact', contactSubmit);
-app.use('/login', loginRoute);
+app.use('/api/income', incomeRoute);
+
     
 // get backend-part
 app.get('/', (req, res) => {

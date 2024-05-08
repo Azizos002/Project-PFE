@@ -49,23 +49,23 @@
 
 .started {
   margin-top: 20px;
-  background-color: #fff; /* Adjust color as needed */
-  padding-top: 0px !important;
-  padding: 10px; /* Add padding as needed */
-  border-radius: 5px; /* Add border-radius for rounded corners */
-  display: inline-block; /* Ensures the background color covers the entire content */
+  background-color: #fff;
+  padding: 7px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
   cursor: pointer;
+
 }
 .next{
-  position: relative;
-  top: 10px;
-  width: 32px;
-  height: auto;
-
+  display: flex;
+  width: 30px;
 }
 
 .login-link {
-  margin-top: 30px;
   margin-right: 10px;
   padding: 10px 20px;
   background-color: #3ea76a;

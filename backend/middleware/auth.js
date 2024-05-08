@@ -7,7 +7,7 @@ const verifyJWT = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.status(401).json({ message: 'Unauthorized: Missing token' });
     }
 
     const token = authHeader.split(' ')[1];
@@ -15,18 +15,19 @@ const verifyJWT = async (req, res, next) => {
 
     try {
         const decoded = await jwtVerify(token, secret);
-        req.userId = decoded.userId;   // Attach user ID to the request object
+        req.user = { id: decoded.userId }; // Attach user object with ID to the request object
         next();
     } catch (err) {
         if (err.name === 'TokenExpiredError') {
-            return res.status(401).json({ message: 'Token expired' });
+            return res.status(401).json({ message: 'Unauthorized: Token expired' });
         }
 
         if (err.name === 'JsonWebTokenError') {
-            return res.status(401).json({ message: 'Invalid token' });
+            return res.status(401).json({ message: 'Unauthorized: Invalid token' });
         }
 
-        next(err);  // Propagate error to global error handler
+        // Handle other errors
+        return res.status(500).json({ message: 'Internal server error' });
     }
 };
 
