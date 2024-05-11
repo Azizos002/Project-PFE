@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import login from '../Assets/login.svg';
 import google from '../Assets/google.png';
 import goBack from '../Assets/GOback.png';
-import Footer from '../Footer/Footer'
+import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 
 const validationSchema = Yup.object({

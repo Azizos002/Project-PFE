@@ -25,19 +25,30 @@ const jwtMiddleware = require('./middleware/auth');
 app.use('/protectedRoute', jwtMiddleware);
 
 
-const userRoutes = require('./Routes/usersRoute');
-const passwordResetRoutes = require('./Routes/passwordResetRoute');
-const contactSubmit = require('./Routes/contactRoute');
-const loginRoute = require('./Routes/loginRoute');
-const incomeRoute = require('./Routes/incomeRoute')
+const userRoutes = require('./Routes/usersRoute')
+const passwordResetRoutes = require('./Routes/passwordResetRoute')
+const contactSubmit = require('./Routes/contactRoute')
+const loginRoute = require('./Routes/loginRoute')
+const incomeRoute = require('./Routes/Dashboard/incomeRoute')
+const housingRoute = require('./Routes/Dashboard/housingRoute')
+const taxRoute = require('./Routes/Dashboard/taxRoute')
+const medicalRoute = require('./Routes/Dashboard/medicalRoute')
+const personalRoute = require('./Routes/Dashboard/personalRoute')
+const othersRoute = require('./Routes/Dashboard/othersRoute')
+const clothingRoute = require('./Routes/Dashboard/clothingRoute')
 
-
-// Use Routes 
+// Use Routes
 app.use('/users', userRoutes);
 app.use('/login', loginRoute);
 app.use('/forgot', passwordResetRoutes);
 app.use('/contact', contactSubmit);
 app.use('/api/income', incomeRoute);
+app.use('/api/housing', housingRoute);
+app.use('/api/tax',  taxRoute);
+app.use('/api/medical', medicalRoute);
+app.use('/api/personal', personalRoute);
+app.use('/api/others', othersRoute);
+app.use('/api/clothing', clothingRoute);
 
     
 // get backend-part

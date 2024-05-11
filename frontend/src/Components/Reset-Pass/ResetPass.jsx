@@ -12,7 +12,7 @@ import './NewPass.css';
 
 import arrow from '../Assets/left-arrow.png';
 import forgot from '../Assets/forgot-pass.png';
-import no from '../Assets/no.png';
+import no from '../Assets/cancel.png';
 
 
 Modal.setAppElement('#root');

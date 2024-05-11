@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Income.css';
-import './IncomeForm.css'
+
 import Dashboard from '../../../../Dashboard/Dashboard';
 
 import OK from '../../../../Assets/OK.png';
@@ -9,8 +8,7 @@ import NO from '../../../../Assets/cancel.png';
 import modify from '../../../../Assets/pencil.png';
 import del from '../../../../Assets/bin.png';
 
-
-const Income = () => {
+const Clothing = () => {
 
     const [incomeData, setIncomeData] = useState([]);
     const [description, setDescription] = useState('');
@@ -21,10 +19,11 @@ const Income = () => {
     const [updatedAmount, setUpdatedAmount] = useState('');
     const [updatedFrequency, setUpdatedFrequency] = useState('');
 
+
     const fetchIncomeData = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/income/getIncome', {
+            const response = await axios.get('http://localhost:5000/api/clothing/getClothing', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -32,7 +31,7 @@ const Income = () => {
             setIncomeData(response.data);
         } catch (error) {
             alert('Please check your network connection and try again.')
-            console.error('Error fetching income data:', error);
+            console.error('Error fetching clothing data:', error);
         }
     };
 
@@ -44,7 +43,7 @@ const Income = () => {
         event.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5000/api/income/createIncome', { description, amount, frequency }, {
+            await axios.post('http://localhost:5000/api/clothing/createClothing', { description, amount, frequency }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -54,28 +53,30 @@ const Income = () => {
             setAmount('');
             setFrequency('monthly');
         } catch (error) {
-            console.error('Error creating income:', error);
+            console.error('Error creating clothing:', error);
         }
     };
+
 
     const handleDelete = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/income/${id}`, {
+            await axios.delete(`http://localhost:5000/api/clothing/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
             fetchIncomeData();
         } catch (error) {
-            console.error('Error deleting income:', error);
+            console.error('Error deleting clothing:', error);
         }
     };
+
 
     const handleSave = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:5000/api/income/updateIncome/${id}`, {
+            await axios.put(`http://localhost:5000/api/clothing/updateClothing/${id}`, {
                 description: updatedDescription,
                 amount: updatedAmount,
                 frequency: updatedFrequency
@@ -87,10 +88,9 @@ const Income = () => {
             fetchIncomeData();
             setEditMode(null);
         } catch (error) {
-            console.error('Error updating income:', error);
+            console.error('Error updating clothing:', error);
         }
     };
-
 
     const calculateTotalMonthly = () => {
         let totalMonthly = 0;
@@ -147,17 +147,14 @@ const Income = () => {
                     break;
             }
         });
-
         return totalAnnualy;
     }
-
-
     return (
         <>
             <Dashboard />
             <div className='PagesContent'>
                 <div className="income-container">
-                    <h2 className='TitlePages'>Income</h2>
+                    <h2 className='TitlePages'>Clothing</h2>
                     <div className="income-form-container">
                         <form onSubmit={handleSubmit} className='fromIncome'>
                             <input
@@ -244,13 +241,13 @@ const Income = () => {
                         </tbody>
                         <tfoot className="customTableFooter">
                             <tr>
-                                <td className="totalMonthly" colSpan="1">Total Income Monthly</td>
+                                <td className="totalMonthly" colSpan="1">Total Clothing Monthly</td>
                                 <td className="totalAmount" colSpan="1">
                                     TND {calculateTotalMonthly().toFixed(2)}
                                 </td>
                             </tr>
                             <tr>
-                                <td className="totalMonthly" colSpan="1">Total Income Annually</td>
+                                <td className="totalMonthly" colSpan="1">Total Clothing Annually</td>
                                 <td className="totalAmount" colSpan="1">
                                     TND {calculateTotalAnnualy().toFixed(2)}
                                 </td>
@@ -262,6 +259,6 @@ const Income = () => {
             </div>
         </>
     );
-};
+}
 
-export default Income;
+export default Clothing

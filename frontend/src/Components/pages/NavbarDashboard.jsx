@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 
-import {faCircleUser} from '@fortawesome/free-solid-svg-icons'
 import './NavbarDashboard.css';
+import {faCircleUser} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavbarDashboard = () => {

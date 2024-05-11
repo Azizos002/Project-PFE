@@ -1,3 +1,13 @@
+.PagesContent {
+    position: absolute;
+    left: 200px;
+    top: 50px;
+    width: calc(100% - 250px);
+    transition: transform 0.3s ease;
+    /* Transition animation */
+
+}
+
 .income-container {
     margin: 20px;
     width: 100%;
@@ -11,7 +21,7 @@
 }
 
 .Thead td {
-    color: green;
+    color: #3ea76a;
 }
 
 .income-table th,
@@ -24,25 +34,21 @@
 .income-table th {
     background-color: #f2f2f2;
     color: #3ea76a;
+    font-size: 20px;
+
 }
 
 .amount-input {
     width: 30%;
 }
 
-.amount-input:hover {
+.amount-input:focus {
     border: solid 2px #3ea76a;
 }
 
-.DescriptionTitle {
-    text-align: left !important;
+.incomeT {
     font-weight: 500;
-    font-size: 20px;
-    margin-right: 10em;
-}
-
-.DescTitle {
-    text-align: left !important;
+    font-size: 17px
 }
 
 .income-table select {
@@ -62,8 +68,21 @@
 }
 
 .button-container {
-
     margin-bottom: 20px;
+}
+
+.actionTH {
+    width: 150px;
+}
+
+.incomeActions {
+    display: flex;
+    width: 150px;
+    justify-content: center;
+}
+
+.incomeBtn {
+    background-color: transparent !important;
 }
 
 .add-button {
@@ -75,37 +94,40 @@
     position: relative;
     left: 10%;
 }
+
 .add-button:hover {
     background-color: transparent;
 }
 
-.delBtn{
-    background-color: transparent;
+.picIncome img {
+    background-color: transparent !important;
     width: 32px;
     height: 32px;
     margin: 10px;
     display: inline-flex;
     align-items: center;
 
-    &:hover{
+    &:hover {
         background-color: transparent;
     }
 }
-.supp img{
+
+.supp img {
     width: 32px;
     height: 32px;
 }
 
-.categoryButton{
+.categoryButton {
     display: flex;
 }
 
-.cancelBtn{
+.cancelBtn {
     background-color: transparent;
     width: 32px;
     height: 32px;
     margin-bottom: 5px;
-    &:hover{
+
+    &:hover {
         background-color: transparent;
     }
 }
@@ -124,76 +146,34 @@
     margin-bottom: 20px;
 }
 
-.total{
+.total {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.Actions{
+.Actions {
     width: 25%;
 }
 
 
-/* Style for the modal backdrop */
-.modal-backdrop {
-    background-color: rgb(4, 4, 4);
-}
 
-/* Style for the modal content */
-.modal-content {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.571);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999;
-    width: 20%;
-}
-
-.modal-header {
-    background-color: red;
-    color: #fff;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-title img{
-    width: 48px;
-}
-
-.modalTitle{
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.modal-body {
-    padding: 20px;
+.customTableFooter {
+    font-weight: bolder;
     text-align: center;
+    color: #3ea76a;
+    font-size: 20px;
 }
 
-.modal-footer {
-    border-top: none;
-    padding: 20px;
-    padding-top: 0px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+.totalMonthly,
+.totalAmount {
+    background-color: #f2f2f2;
 }
 
-.modal-footer button {
-    background-color: red;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 15px;
+@media screen and (max-width: 768px) {
+    .PagesContent {
+        left: 0;
+        margin-right: 10px;
+        width: 100%;
+    }
 }

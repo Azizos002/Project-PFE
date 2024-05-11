@@ -15,6 +15,11 @@ import NavbarDashboard from './Components/pages/NavbarDashboard';
 import SideBar from './Components/pages/SideBar/SideBar';
 import Income from './Components/pages/SideBar/Content/Income/Income';
 import Tax from './Components/pages/SideBar/Content/Tax/Tax';
+import Housing from './Components/pages/SideBar/Content/Housing/Housing';
+import Medical from './Components/pages/SideBar/Content/Medical/Medical';
+import Personal from './Components/pages/SideBar/Content/Personal/Personal';
+import Others from './Components/pages/SideBar/Content/Others/Others';
+import Clothing from './Components/pages/SideBar/Content/Clothing/Clothing';
 
 function App() {
   return (
@@ -35,8 +40,11 @@ function App() {
           <Route path='/SideBar' element={<SideBar />} />
           <Route path='/Dashboard/Income' element={<Income />} />
           <Route path='/Dashboard/Tax' element={<Tax />} />
-
-
+          <Route path='/Dashboard/Housing' element={<Housing />} />
+          <Route path='/Dashboard/Medical' element={<Medical />} />
+          <Route path='/Dashboard/Personal' element={<Personal />} />
+          <Route path='/Dashboard/Others' element={<Others />} />
+          <Route path='/Dashboard/Clothing' element={<Clothing />} />
         </Routes>
       </Router>
     </div>

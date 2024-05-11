@@ -1,32 +1,65 @@
+.sidebar-container {
+    position: relative;
+}
+
 .sidebar {
-    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 200px;
+    height: 100%;
     background-image: linear-gradient(to right top, #070508, #070508, #080609, #080609, #080609);
-    color: #fff;
-    height: 100vh;
-    transition: left 0.3s;
-    overflow-y: auto;
-    z-index: 999;
+    color: #ffff;
+    /* transition: left 0.01s; */
+    /* overflow-y: auto; */
+    transform: translateX(-100%);
+    transition: transform 0s ;
+    z-index: 9;
 }
 
-.sidebar-header{
+.sidebar.show {
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    .SideBarToggle {
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+}
+
+.SideBarToggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 5;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+
+.sidebar-header {
     display: flex;
     align-items: center;
-    padding-bottom  : 10px;
+    padding-bottom: 10px;
     border-bottom: solid 3px #222;
     justify-content: center;
     cursor: pointer;
 }
 
-.titleDashboard{
-    font-size: 20px;
+.titleDashboard {
+    display: flex;
+    font-size: 25px;
     font-weight: bold;
+    color: white;
+    margin-right: 7px;
+    margin-top: 5px;
 }
-.sidebar-menu {
 
+.sidebar-menu {
     list-style-type: none;
     padding-top: 8.5px;
     display: flex;
@@ -34,7 +67,7 @@
     justify-content: center;
 }
 
-.sidebar-item a{
+.sidebar-item a {
     padding: 10px;
     cursor: pointer;
     display: flex;
@@ -42,19 +75,11 @@
     font-size: 17px;
     text-decoration: none;
     color: white;
+    transition: background-color 0.3s ease;
 }
 
-.sidebar-item:hover{
+.sidebar-item a:hover {
     background-color: rgba(255, 255, 255, 0.2);
-}
-
-.sidebar-item .text {
-    display: none;
-}
-
-.sidebar-item:hover .text {
-    display: block;
-    justify-content: center;
 }
 
 .icon {
@@ -63,7 +88,7 @@
     color: #3ea76a;
 }
 
-.SideText{
+.SideText {
     color: #c1c1c1;
     font-style: italic;
     margin: 10px 0 5px 10px;
@@ -76,4 +101,14 @@
     text-align: center;
     font-size: 0.8em;
     width: 200px;
+}
+
+
+
+
+@media screen and (min-width: 800) {
+    /* .sidebar {
+        transform: translateX(0);
+    } */
+
 }

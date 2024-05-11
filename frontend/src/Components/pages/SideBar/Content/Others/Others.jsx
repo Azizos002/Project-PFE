@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Income.css';
-import './IncomeForm.css'
+
 import Dashboard from '../../../../Dashboard/Dashboard';
 
 import OK from '../../../../Assets/OK.png';
@@ -9,9 +8,7 @@ import NO from '../../../../Assets/cancel.png';
 import modify from '../../../../Assets/pencil.png';
 import del from '../../../../Assets/bin.png';
 
-
-const Income = () => {
-
+const Others = () => {
     const [incomeData, setIncomeData] = useState([]);
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
@@ -24,7 +21,7 @@ const Income = () => {
     const fetchIncomeData = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/income/getIncome', {
+            const response = await axios.get('http://localhost:5000/api/others/getOthers', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -32,7 +29,7 @@ const Income = () => {
             setIncomeData(response.data);
         } catch (error) {
             alert('Please check your network connection and try again.')
-            console.error('Error fetching income data:', error);
+            console.error('Error fetching others data:', error);
         }
     };
 
@@ -44,7 +41,7 @@ const Income = () => {
         event.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5000/api/income/createIncome', { description, amount, frequency }, {
+            await axios.post('http://localhost:5000/api/others/createOthers', { description, amount, frequency }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -54,28 +51,28 @@ const Income = () => {
             setAmount('');
             setFrequency('monthly');
         } catch (error) {
-            console.error('Error creating income:', error);
+            console.error('Error creating others:', error);
         }
     };
 
-    const handleDelete = async (id) => {
+        const handleDelete = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/income/${id}`, {
+            await axios.delete(`http://localhost:5000/api/others/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
             fetchIncomeData();
         } catch (error) {
-            console.error('Error deleting income:', error);
+            console.error('Error deleting others:', error);
         }
     };
 
     const handleSave = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:5000/api/income/updateIncome/${id}`, {
+            await axios.put(`http://localhost:5000/api/others/updateOthers/${id}`, {
                 description: updatedDescription,
                 amount: updatedAmount,
                 frequency: updatedFrequency
@@ -87,10 +84,9 @@ const Income = () => {
             fetchIncomeData();
             setEditMode(null);
         } catch (error) {
-            console.error('Error updating income:', error);
+            console.error('Error updating others:', error);
         }
     };
-
 
     const calculateTotalMonthly = () => {
         let totalMonthly = 0;
@@ -152,12 +148,14 @@ const Income = () => {
     }
 
 
+
+
     return (
         <>
             <Dashboard />
             <div className='PagesContent'>
                 <div className="income-container">
-                    <h2 className='TitlePages'>Income</h2>
+                    <h2 className='TitlePages'>Others</h2>
                     <div className="income-form-container">
                         <form onSubmit={handleSubmit} className='fromIncome'>
                             <input
@@ -262,6 +260,6 @@ const Income = () => {
             </div>
         </>
     );
-};
+}
 
-export default Income;
+export default Others
