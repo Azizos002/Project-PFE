@@ -60,7 +60,7 @@
   text-align: center;
 }
 
-.custom-model input {
+.custom-model input{
   width: 70px;
   height: 40px;
   margin-right: 10px;
@@ -70,6 +70,7 @@
   background-color: rgb(210, 210, 210);
   border-radius: 4px;
   outline: none;
+  color: black !important;
 }
 
 .custom-model .SendOTP {

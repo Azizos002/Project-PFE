@@ -20,6 +20,12 @@ import Medical from './Components/pages/SideBar/Content/Medical/Medical';
 import Personal from './Components/pages/SideBar/Content/Personal/Personal';
 import Others from './Components/pages/SideBar/Content/Others/Others';
 import Clothing from './Components/pages/SideBar/Content/Clothing/Clothing';
+import Food from './Components/pages/SideBar/Content/Food/Food';
+import Saving from './Components/pages/SideBar/Content/Saving/Saving';
+import AboutDashboard from './Components/pages/SideBar/Content/AboutDashboard/AboutDashboard';
+import Statistics from './Components/Dashboard/Statistics'
+import Profile from './Components/Profile/Profile';
+import Settings from './Components/Dashboard/Settings/Settings';
 
 function App() {
   return (
@@ -45,6 +51,12 @@ function App() {
           <Route path='/Dashboard/Personal' element={<Personal />} />
           <Route path='/Dashboard/Others' element={<Others />} />
           <Route path='/Dashboard/Clothing' element={<Clothing />} />
+          <Route path='/Dashboard/Food' element={<Food />} />
+          <Route path='/Dashboard/Saving' element={<Saving />} />
+          <Route path='/Dashboard/help' element={<AboutDashboard />} />
+          <Route path='/Statistics' element={<Statistics />} />
+          <Route path='/profile' element={<Profile /> } />
+          <Route path='/Dashboard/Settings' element={<Settings />} />
         </Routes>
       </Router>
     </div>

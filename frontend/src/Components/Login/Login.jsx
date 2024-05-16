@@ -37,7 +37,6 @@ const Login = () => {
         }
         if (response.status === 200) {
           console.log('Login Success');
-          alert('Login Success');
           navigate('/Dashboard');
 
           localStorage.setItem('username', response.data.username);

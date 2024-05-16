@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -18,7 +19,7 @@ const Clothing = () => {
     const [updatedDescription, setUpdatedDescription] = useState('');
     const [updatedAmount, setUpdatedAmount] = useState('');
     const [updatedFrequency, setUpdatedFrequency] = useState('');
-
+    const [isSaved, setIsSaved] = useState(false);
 
     const fetchIncomeData = async () => {
         try {
@@ -30,7 +31,7 @@ const Clothing = () => {
             });
             setIncomeData(response.data);
         } catch (error) {
-            alert('Please check your network connection and try again.')
+            alert('Please check your network connection and try again.');
             console.error('Error fetching clothing data:', error);
         }
     };
@@ -38,6 +39,7 @@ const Clothing = () => {
     useEffect(() => {
         fetchIncomeData();
     }, []);
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -52,11 +54,13 @@ const Clothing = () => {
             setDescription('');
             setAmount('');
             setFrequency('monthly');
+            //////////////////////////////////////////////
+            window.location.reload();
+
         } catch (error) {
             console.error('Error creating clothing:', error);
         }
     };
-
 
     const handleDelete = async (id) => {
         try {
@@ -67,11 +71,12 @@ const Clothing = () => {
                 }
             });
             fetchIncomeData();
+            window.location.reload();
+
         } catch (error) {
             console.error('Error deleting clothing:', error);
         }
     };
-
 
     const handleSave = async (id) => {
         try {
@@ -87,68 +92,84 @@ const Clothing = () => {
             });
             fetchIncomeData();
             setEditMode(null);
+
+            window.location.reload();
+
         } catch (error) {
             console.error('Error updating clothing:', error);
         }
     };
 
-    const calculateTotalMonthly = () => {
-        let totalMonthly = 0;
-        incomeData.forEach((income) => {
+    const calculateTotalMonthlyClothing = () => {
+        return incomeData.reduce((total, income) => {
+            const amount = parseFloat(income.amount);
             switch (income.frequency) {
-                case 'monthly':
-                    totalMonthly += parseFloat(income.amount);
-                    break;
                 case 'weekly':
-                    totalMonthly += parseFloat(income.amount) * 4;
-                    break;
+                    return total + amount * 4;
                 case 'bi-weekly':
-                    totalMonthly += parseFloat(income.amount) * 2;
-                    break;
+                    return total + amount * 2;
                 case 'trimester':
-                    totalMonthly += parseFloat(income.amount) / 3;
-                    break;
+                    return total + amount / 3;
                 case 'semester':
-                    totalMonthly += parseFloat(income.amount) / 6;
-                    break;
+                    return total + amount / 6;
                 case 'annual':
-                    totalMonthly += parseFloat(income.amount) / 12;
-                    break;
+                    return total + amount / 12;
                 default:
-                    break;
+                    return total + amount;
             }
-        });
-        return totalMonthly;
+        }, 0);
     };
 
-    const calculateTotalAnnualy = () => {
-        let totalAnnualy = 0;
-        incomeData.forEach(income => {
+    const calculateTotalAnnualyClothing = () => {
+        return incomeData.reduce((total, income) => {
+            const amount = parseFloat(income.amount);
             switch (income.frequency) {
                 case 'weekly':
-                    totalAnnualy += parseFloat(income.amount) * 52.1428571;
-                    break;
+                    return total + amount * 52.1428571;
                 case 'bi-weekly':
-                    totalAnnualy += parseFloat(income.amount) * 26;
-                    break;
+                    return total + amount * 26;
                 case 'monthly':
-                    totalAnnualy += parseFloat(income.amount) * 12;
-                    break;
+                    return total + amount * 12;
                 case 'trimester':
-                    totalAnnualy += parseFloat(income.amount) * 4;
-                    break;
+                    return total + amount * 4;
                 case 'semester':
-                    totalAnnualy += parseFloat(income.amount) * 2;
-                    break;
+                    return total + amount * 2;
                 case 'annual':
-                    totalAnnualy += parseFloat(income.amount) * 1;
-                    break;
+                    return total + amount;
                 default:
-                    break;
+                    return total;
             }
-        });
-        return totalAnnualy;
-    }
+        }, 0);
+    };
+
+    // Function to save total monthly clothing data to the server
+    const saveTotalMonthlyData = async (value) => {
+        try {
+            const token = localStorage.getItem('token');
+            await axios.post('http://localhost:5000/api/total/saveOrUpdateTotal', {
+                category: 'clothing',
+                total: value
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setIsSaved(true);
+
+        } catch (error) {
+            console.error('Error saving Total Monthly:  ', error);
+        }
+    };
+
+    useEffect(() => {
+        const totalMonthly = calculateTotalMonthlyClothing();
+        if (totalMonthly !== 0 && !isSaved) {
+            saveTotalMonthlyData(totalMonthly);
+        } else if (totalMonthly === 0) {
+            saveTotalMonthlyData(0);
+        }
+    }, [incomeData, isSaved]);
+
     return (
         <>
             <Dashboard />
@@ -181,10 +202,9 @@ const Clothing = () => {
                                 <option value="semester">Semester</option>
                                 <option value="annual">Annual</option>
                             </select>
-                            <button className='formBtnIncome' type="submit">Add</button>
+                            <button className='formBtnIncome' type="submit" >Add</button>
                         </form>
                     </div>
-
 
                     <table className='income-table'>
                         <thead>
@@ -243,17 +263,16 @@ const Clothing = () => {
                             <tr>
                                 <td className="totalMonthly" colSpan="1">Total Clothing Monthly</td>
                                 <td className="totalAmount" colSpan="1">
-                                    TND {calculateTotalMonthly().toFixed(2)}
+                                    TND {calculateTotalMonthlyClothing().toFixed(2)}
                                 </td>
                             </tr>
                             <tr>
                                 <td className="totalMonthly" colSpan="1">Total Clothing Annually</td>
                                 <td className="totalAmount" colSpan="1">
-                                    TND {calculateTotalAnnualy().toFixed(2)}
+                                    TND {calculateTotalAnnualyClothing().toFixed(2)}
                                 </td>
                             </tr>
                         </tfoot>
-
                     </table>
                 </div>
             </div>
@@ -261,4 +280,4 @@ const Clothing = () => {
     );
 }
 
-export default Clothing
+export default Clothing;

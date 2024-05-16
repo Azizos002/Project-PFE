@@ -12,6 +12,7 @@ mongoose
         .connect(DataBase)
     .then(() => {
         console.log('MongoDB Connected');
+        
     })
     .catch((err) => {
         console.error('Error Connecting to MongoDB ', err);
@@ -36,6 +37,10 @@ const medicalRoute = require('./Routes/Dashboard/medicalRoute')
 const personalRoute = require('./Routes/Dashboard/personalRoute')
 const othersRoute = require('./Routes/Dashboard/othersRoute')
 const clothingRoute = require('./Routes/Dashboard/clothingRoute')
+const foodRoute = require('./Routes/Dashboard/foodRoute')
+const savingRoute = require('./Routes/Dashboard/savingRoute')
+const totalRoute = require('./Routes/Dashboard/totalRoute')
+const exportRoute = require('./Routes/Dashboard/exportRoute')
 
 // Use Routes
 app.use('/users', userRoutes);
@@ -49,7 +54,10 @@ app.use('/api/medical', medicalRoute);
 app.use('/api/personal', personalRoute);
 app.use('/api/others', othersRoute);
 app.use('/api/clothing', clothingRoute);
-
+app.use('/api/food', foodRoute);
+app.use('/api/saving', savingRoute);
+app.use('/api/total', totalRoute);
+app.use('/api/export', exportRoute);
     
 // get backend-part
 app.get('/', (req, res) => {

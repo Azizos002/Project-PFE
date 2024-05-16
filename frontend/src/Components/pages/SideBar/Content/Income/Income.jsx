@@ -21,6 +21,7 @@ const Income = () => {
     const [updatedAmount, setUpdatedAmount] = useState('');
     const [updatedFrequency, setUpdatedFrequency] = useState('');
 
+
     const fetchIncomeData = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -33,6 +34,9 @@ const Income = () => {
         } catch (error) {
             alert('Please check your network connection and try again.')
             console.error('Error fetching income data:', error);
+            localStorage.removeItem('token')
+            // Redirect to login page
+            window.location.href = '/login';
         }
     };
 
@@ -92,7 +96,7 @@ const Income = () => {
     };
 
 
-    const calculateTotalMonthly = () => {
+    const calculateTotalMonthlyIncome = () => {
         let totalMonthly = 0;
         incomeData.forEach((income) => {
             switch (income.frequency) {
@@ -121,7 +125,7 @@ const Income = () => {
         return totalMonthly;
     };
 
-    const calculateTotalAnnualy = () => {
+    const calculateTotalAnnualyIncome = () => {
         let totalAnnualy = 0;
         incomeData.forEach(income => {
             switch (income.frequency) {
@@ -246,13 +250,13 @@ const Income = () => {
                             <tr>
                                 <td className="totalMonthly" colSpan="1">Total Income Monthly</td>
                                 <td className="totalAmount" colSpan="1">
-                                    TND {calculateTotalMonthly().toFixed(2)}
+                                    TND {calculateTotalMonthlyIncome().toFixed(2)}
                                 </td>
                             </tr>
                             <tr>
                                 <td className="totalMonthly" colSpan="1">Total Income Annually</td>
                                 <td className="totalAmount" colSpan="1">
-                                    TND {calculateTotalAnnualy().toFixed(2)}
+                                    TND {calculateTotalAnnualyIncome().toFixed(2)}
                                 </td>
                             </tr>
                         </tfoot>

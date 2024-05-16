@@ -18,6 +18,7 @@ const forgotPasswordController = {
             user.otpExpiration = new Date(Date.now() + 10 * 60 * 1000);
             await user.save();
             console.log('OTP code generated:', otp);
+            console.log('user',user.otp)
 
             await sendEmail(email, otp);
             res.status(200).json({ message: 'Email sent successfully' });

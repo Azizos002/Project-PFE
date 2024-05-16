@@ -9,7 +9,7 @@ import modify from '../../../../Assets/pencil.png';
 import del from '../../../../Assets/bin.png';
 
 const Personal = () => {
-    
+
     const [incomeData, setIncomeData] = useState([]);
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
@@ -18,6 +18,8 @@ const Personal = () => {
     const [updatedDescription, setUpdatedDescription] = useState('');
     const [updatedAmount, setUpdatedAmount] = useState('');
     const [updatedFrequency, setUpdatedFrequency] = useState('');
+    const [isSaved, setIsSaved] = useState(false);
+
 
     const fetchIncomeData = async () => {
         try {
@@ -31,6 +33,9 @@ const Personal = () => {
         } catch (error) {
             alert('Please check your network connection and try again.')
             console.error('Error fetching personal data:', error);
+            localStorage.removeItem('token')
+            // Redirect to login page
+            window.location.href = '/login';
         }
     };
 
@@ -51,6 +56,8 @@ const Personal = () => {
             setDescription('');
             setAmount('');
             setFrequency('monthly');
+            window.location.reload();
+
         } catch (error) {
             console.error('Error creating personal:', error);
         }
@@ -65,6 +72,8 @@ const Personal = () => {
                 }
             });
             fetchIncomeData();
+            window.location.reload();
+
         } catch (error) {
             console.error('Error deleting personal:', error);
         }
@@ -84,69 +93,83 @@ const Personal = () => {
             });
             fetchIncomeData();
             setEditMode(null);
+            window.location.reload();
+
         } catch (error) {
             console.error('Error updating personal:', error);
         }
     };
-
-    const calculateTotalMonthly = () => {
-        let totalMonthly = 0;
-        incomeData.forEach((income) => {
+    const calculateTotalMonthlyPersonal = () => {
+        return incomeData.reduce((total, income) => {
+            const amount = parseFloat(income.amount);
             switch (income.frequency) {
-                case 'monthly':
-                    totalMonthly += parseFloat(income.amount);
-                    break;
                 case 'weekly':
-                    totalMonthly += parseFloat(income.amount) * 4;
-                    break;
+                    return total + amount * 4;
                 case 'bi-weekly':
-                    totalMonthly += parseFloat(income.amount) * 2;
-                    break;
+                    return total + amount * 2;
                 case 'trimester':
-                    totalMonthly += parseFloat(income.amount) / 3;
-                    break;
+                    return total + amount / 3;
                 case 'semester':
-                    totalMonthly += parseFloat(income.amount) / 6;
-                    break;
+                    return total + amount / 6;
                 case 'annual':
-                    totalMonthly += parseFloat(income.amount) / 12;
-                    break;
+                    return total + amount / 12;
                 default:
-                    break;
+                    return total + amount;
             }
-        });
-        return totalMonthly;
+        }, 0);
     };
 
-    const calculateTotalAnnualy = () => {
-        let totalAnnualy = 0;
-        incomeData.forEach(income => {
+    const calculateTotalAnnualyPersonal = () => {
+        return incomeData.reduce((total, income) => {
+            const amount = parseFloat(income.amount);
             switch (income.frequency) {
                 case 'weekly':
-                    totalAnnualy += parseFloat(income.amount) * 52.1428571;
-                    break;
+                    return total + amount * 52.1428571;
                 case 'bi-weekly':
-                    totalAnnualy += parseFloat(income.amount) * 26;
-                    break;
+                    return total + amount * 26;
                 case 'monthly':
-                    totalAnnualy += parseFloat(income.amount) * 12;
-                    break;
+                    return total + amount * 12;
                 case 'trimester':
-                    totalAnnualy += parseFloat(income.amount) * 4;
-                    break;
+                    return total + amount * 4;
                 case 'semester':
-                    totalAnnualy += parseFloat(income.amount) * 2;
-                    break;
+                    return total + amount * 2;
                 case 'annual':
-                    totalAnnualy += parseFloat(income.amount) * 1;
-                    break;
+                    return total + amount;
                 default:
-                    break;
+                    return total;
             }
-        });
+        }, 0);
+    };
 
-        return totalAnnualy;
-    }
+    const totalMonthly = calculateTotalMonthlyPersonal();
+
+    // Function to save total monthly clothing data to the server
+    const saveTotalMonthlyData = async (value) => {
+        try {
+            const token = localStorage.getItem('token');
+            await axios.post('http://localhost:5000/api/total/saveOrUpdateTotal', {
+                category: 'personal',
+                total: value 
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setIsSaved(true);
+
+        } catch (error) {
+            console.error('Error saving Total Monthly:  ', error);
+        }
+    };
+
+    // useEffect hook to call saveTotalMonthlyData whenever totalMonthly changes
+    useEffect(() => {
+        if (totalMonthly !== 0 && !isSaved) {
+          saveTotalMonthlyData(totalMonthly);
+        } else if (totalMonthly === 0) {
+            saveTotalMonthlyData(0);
+          }
+      }, [totalMonthly, isSaved]);
 
     return (
         <>
@@ -242,13 +265,13 @@ const Personal = () => {
                             <tr>
                                 <td className="totalMonthly" colSpan="1">Total Personal Monthly</td>
                                 <td className="totalAmount" colSpan="1">
-                                    TND {calculateTotalMonthly().toFixed(2)}
+                                    TND {calculateTotalMonthlyPersonal().toFixed(2)}
                                 </td>
                             </tr>
                             <tr>
                                 <td className="totalMonthly" colSpan="1">Total Personal Annually</td>
                                 <td className="totalAmount" colSpan="1">
-                                    TND {calculateTotalAnnualy().toFixed(2)}
+                                    TND {calculateTotalAnnualyPersonal().toFixed(2)}
                                 </td>
                             </tr>
                         </tfoot>

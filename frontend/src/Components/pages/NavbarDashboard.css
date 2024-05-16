@@ -223,6 +223,11 @@
 .menu-button{
     display: none;
 }
+
+.ExportData{
+    background-color: transparent;
+    padding: 0 !important;
+}
 /* For medium and small screens */
 @media screen and (max-width: 992px) {
     .navbarDash {

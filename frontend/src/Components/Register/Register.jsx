@@ -1,27 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 // import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import register from '../Assets/register.svg';
-import './Register.css'
+import './Register.css';
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import goBack from '../Assets/GOback.png';
 
-
 const Register = () => {
   const navigate = useNavigate();
-  // const [showPassword, setShowPassword] = React.useState(false);
-  const [activeButton, setActiveButton] = useState(1); // State to track active button
-
-  const handleButtonClick = (buttonNumber) => {
-    setActiveButton(buttonNumber);
-    if (buttonNumber === 2) {
-      navigate('/registerFam');
-    }
-  };
+  // const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -42,21 +33,17 @@ const Register = () => {
           password: values.password,
         });
 
-        if (response.status === 200 ) {
+        if (response.status === 200) {
           console.log('Registration successful');
           alert('Registration successful');
           navigate('/login');
-        }
-
-        else if (response.status === 409) {
-          alert('User already exists <br />  change the Username OR Email' );
-        }
-
-        else {
+        } else if (response.status === 409) {
+          alert('User already exists. Change the Username or Email.');
+        } else {
           console.error('Registration Failed');
         }
       } catch (e) {
-        console.error('Error during registration ', e);
+        console.error('Error during registration', e);
       }
     },
   });
@@ -71,31 +58,47 @@ const Register = () => {
               <div className="login-center">
                 <h2>SignUp</h2>
 
-                <div className="buttons-container">
-                  <button
-                    className={`BUtype ${activeButton === 1 ? 'active' : ''}`}
-                    onClick={() => handleButtonClick(1)}
-                  >
-                    Personal Account
-                  </button>
-                  <button
-                    className={`BUtype ${activeButton === 2 ? 'active' : ''}`}
-                    onClick={() => handleButtonClick(2)}
-                  >
-                    Family Account
-                  </button>
-                </div>
-
                 <form onSubmit={formik.handleSubmit}>
-                  <input type="text" placeholder="username" name="username" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.username} />
-                  {formik.touched.username && formik.errors.username && <span className="error">{formik.errors.username}</span>}
-                  <input type="email" placeholder="Email" name="email" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} />
-                  {formik.touched.email && formik.errors.email && <span className="error">{formik.errors.email}</span>}
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    name="username"
+                    aria-label="Username"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.username}
+                  />
+                  {formik.touched.username && formik.errors.username && (
+                    <span className="error">{formik.errors.username}</span>
+                  )}
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    aria-label="Email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <span className="error">{formik.errors.email}</span>
+                  )}
                   <div className="pass-input-div">
-                    <input type="password" name="password" placeholder="password" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} />
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      aria-label="Password"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.password}
+                    />
+                    {/* Uncomment below lines to add show/hide password functionality */}
                     {/* type={showPassword ? "text" : "password"} */}
                     {/* {showPassword ? <FaEyeSlash onClick={() => setShowPassword(!showPassword)} /> : <FaEye onClick={() => setShowPassword(!showPassword)} />} */}
-                    {formik.touched.password && formik.errors.password && <span className="error">{formik.errors.password}</span>}
+                    {formik.touched.password && formik.errors.password && (
+                      <span className="error">{formik.errors.password}</span>
+                    )}
                   </div>
 
                   <div className="registerButton">
@@ -111,16 +114,12 @@ const Register = () => {
           </div>
           <div className="login-left">
             <Link to="/login" className="goBack">
-              <img src={goBack} alt="GO-back" />
+              <img src={goBack} alt="Go back" />
             </Link>
-            <h3>
-              Be a part of US
-            </h3>
-            <h4>
-              Signup NOW !!
-            </h4>
+            <h3>Be a part of US</h3>
+            <h4>Signup NOW !!</h4>
             <br />
-            <img src={register} alt="login-illustration" />
+            <img src={register} alt="Login illustration" />
           </div>
         </div>
       </div>

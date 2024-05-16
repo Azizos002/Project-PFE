@@ -16,11 +16,13 @@
             try {
                 const user = await User.findOne({ email });
                 if (!user) {
+                    console.log('email ')
                     return res.status(402).json({ message: 'Email not Found 404.' });
                 }
 
                 const isMatch = await bcrypt.compare(password, user.password);
                 if (!isMatch) {
+                    console.log('password ')
                     return res.status(402).json({ message: 'Wrong Password  .' });
                 }
 

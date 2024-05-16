@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import Axios for making HTTP requests
 
 import './NavbarDashboard.css';
-import {faCircleUser} from '@fortawesome/free-solid-svg-icons'
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavbarDashboard = () => {
@@ -17,6 +18,30 @@ const NavbarDashboard = () => {
         localStorage.removeItem('username');
         localStorage.removeItem('token');
         navigate('/login');
+    };
+
+    const handleExportData = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const username = localStorage.getItem('username');
+            // Make a request to your backend to trigger CSV file creation and download
+            const response = await axios.get('http://localhost:5000/api/export/exportCSV', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const blob = new Blob([response.data], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${username}_data.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } catch (error) {
+            console.error('Export data error:', error);
+            // Handle error if export fails
+        }
     };
 
     return (
@@ -35,13 +60,15 @@ const NavbarDashboard = () => {
                             <div className="dropdown-content">
                                 <NavLink to="/profile">Profile</NavLink>
                                 <NavLink to="/settings">Settings</NavLink>
-                                <Link to="/download-extrait">Download Extrait</Link>
+                                <NavLink>
+                                    <button onClick={handleExportData} className='ExportData'>Export Data</button>
+                                </NavLink>
                                 <button className='LogoutButton' onClick={handleLogout}>Logout</button>
                             </div>
                         )}
                     </div>
                 </div>
-                
+
             </div>
 
         </nav>

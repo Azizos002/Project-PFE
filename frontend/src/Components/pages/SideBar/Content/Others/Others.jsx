@@ -17,6 +17,8 @@ const Others = () => {
     const [updatedDescription, setUpdatedDescription] = useState('');
     const [updatedAmount, setUpdatedAmount] = useState('');
     const [updatedFrequency, setUpdatedFrequency] = useState('');
+    const [isSaved, setIsSaved] = useState(false); // Flag to track whether data is saved or not
+
 
     const fetchIncomeData = async () => {
         try {
@@ -50,6 +52,8 @@ const Others = () => {
             setDescription('');
             setAmount('');
             setFrequency('monthly');
+            window.location.reload();
+
         } catch (error) {
             console.error('Error creating others:', error);
         }
@@ -64,6 +68,8 @@ const Others = () => {
                 }
             });
             fetchIncomeData();
+            window.location.reload();
+
         } catch (error) {
             console.error('Error deleting others:', error);
         }
@@ -83,70 +89,85 @@ const Others = () => {
             });
             fetchIncomeData();
             setEditMode(null);
+            window.location.reload();
+
         } catch (error) {
             console.error('Error updating others:', error);
         }
     };
 
-    const calculateTotalMonthly = () => {
-        let totalMonthly = 0;
-        incomeData.forEach((income) => {
+    const calculateTotalMonthlyOthers = () => {
+        return incomeData.reduce((total, income) => {
+            const amount = parseFloat(income.amount);
             switch (income.frequency) {
-                case 'monthly':
-                    totalMonthly += parseFloat(income.amount);
-                    break;
                 case 'weekly':
-                    totalMonthly += parseFloat(income.amount) * 4;
-                    break;
+                    return total + amount * 4;
                 case 'bi-weekly':
-                    totalMonthly += parseFloat(income.amount) * 2;
-                    break;
+                    return total + amount * 2;
                 case 'trimester':
-                    totalMonthly += parseFloat(income.amount) / 3;
-                    break;
+                    return total + amount / 3;
                 case 'semester':
-                    totalMonthly += parseFloat(income.amount) / 6;
-                    break;
+                    return total + amount / 6;
                 case 'annual':
-                    totalMonthly += parseFloat(income.amount) / 12;
-                    break;
+                    return total + amount / 12;
                 default:
-                    break;
+                    return total + amount;
             }
-        });
-        return totalMonthly;
+        }, 0);
+    };
+    
+    const calculateTotalAnnualyOthers = () => {
+        return incomeData.reduce((total, income) => {
+            const amount = parseFloat(income.amount);
+            switch (income.frequency) {
+                case 'weekly':
+                    return total + amount * 52.1428571;
+                case 'bi-weekly':
+                    return total + amount * 26;
+                case 'monthly':
+                    return total + amount * 12;
+                case 'trimester':
+                    return total + amount * 4;
+                case 'semester':
+                    return total + amount * 2;
+                case 'annual':
+                    return total + amount;
+                default:
+                    return total;
+            }
+        }, 0);
     };
 
-    const calculateTotalAnnualy = () => {
-        let totalAnnualy = 0;
-        incomeData.forEach(income => {
-            switch (income.frequency) {
-                case 'weekly':
-                    totalAnnualy += parseFloat(income.amount) * 52.1428571;
-                    break;
-                case 'bi-weekly':
-                    totalAnnualy += parseFloat(income.amount) * 26;
-                    break;
-                case 'monthly':
-                    totalAnnualy += parseFloat(income.amount) * 12;
-                    break;
-                case 'trimester':
-                    totalAnnualy += parseFloat(income.amount) * 4;
-                    break;
-                case 'semester':
-                    totalAnnualy += parseFloat(income.amount) * 2;
-                    break;
-                case 'annual':
-                    totalAnnualy += parseFloat(income.amount) * 1;
-                    break;
-                default:
-                    break;
+    const totalMonthly = calculateTotalMonthlyOthers();
+
+        // Function to save total monthly clothing data to the server
+        const saveTotalMonthlyData = async (value) => {
+            try {
+                const token = localStorage.getItem('token');
+                await axios.post('http://localhost:5000/api/total/saveOrUpdateTotal', {
+                    category: 'others',
+                    total: value // Use the provided value instead of totalMonthly
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setIsSaved(true); // Update flag to indicate data is saved
+
+    
+            } catch (error) {
+                console.error('Error saving Total Monthly:  ', error);
             }
-        });
-
-        return totalAnnualy;
-    }
-
+        };
+    
+        // useEffect hook to call saveTotalMonthlyData whenever totalMonthly changes
+        useEffect(() => {
+            if (totalMonthly !== 0 && !isSaved) {
+              saveTotalMonthlyData(totalMonthly);
+            } else if (totalMonthly === 0) {
+                saveTotalMonthlyData(0);
+              }
+          }, [totalMonthly, isSaved]);
 
 
 
@@ -242,15 +263,15 @@ const Others = () => {
                         </tbody>
                         <tfoot className="customTableFooter">
                             <tr>
-                                <td className="totalMonthly" colSpan="1">Total Income Monthly</td>
+                                <td className="totalMonthly" colSpan="1">Total Others Monthly</td>
                                 <td className="totalAmount" colSpan="1">
-                                    TND {calculateTotalMonthly().toFixed(2)}
+                                    TND {calculateTotalMonthlyOthers().toFixed(2)}
                                 </td>
                             </tr>
                             <tr>
-                                <td className="totalMonthly" colSpan="1">Total Income Annually</td>
+                                <td className="totalMonthly" colSpan="1">Total Others Annually</td>
                                 <td className="totalAmount" colSpan="1">
-                                    TND {calculateTotalAnnualy().toFixed(2)}
+                                    TND {calculateTotalAnnualyOthers().toFixed(2)}
                                 </td>
                             </tr>
                         </tfoot>

@@ -5,6 +5,7 @@ const verifyOTPController = {
     verifyOTP: async (req, res) => {
         try {
                 const { email, otp } = req.body;
+                console.log(otp)
             const user = await User.findOne({ email });
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
@@ -20,6 +21,7 @@ const verifyOTPController = {
             }
 
             if (otp !== user.otp) {
+                console.log('herereee',user.otp)
                 return res.status(400).json({ message: 'Invalid OTP' });
             }
 
