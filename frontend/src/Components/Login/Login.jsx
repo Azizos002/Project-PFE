@@ -2,9 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import './Login.css'
-// import { FaEye, FaEyeSlash } from 'react-icons/fa6';
+import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import login from '../Assets/login.svg';
 import google from '../Assets/google.png';
@@ -20,6 +21,8 @@ const validationSchema = Yup.object({
 const Login = () => {
   const navigate = useNavigate();
 
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -27,58 +30,46 @@ const Login = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      const loadingToastId = toast.loading('Logging in...');
       try {
         const response = await axios.post('http://localhost:5000/login/submit', {
           email: values.email,
           password: values.password,
         });
-        if (response.status === 402) {
-          alert('Password Incorrect');
-        }
+
         if (response.status === 200) {
           console.log('Login Success');
-          navigate('/Dashboard');
-
-          localStorage.setItem('username', response.data.username);
+          await delay(3000);
           localStorage.setItem('token', response.data.token);
-          // // Fetch user's income data
-          // await fetchUserIncomeData();
+          localStorage.setItem('username', response.data.username);
 
+          if (response.data.role === 'admin') {
+            toast.update(loadingToastId, { render: 'Welcome Our admin!', type: 'success', isLoading: false, autoClose: 2000 });
+            await delay(2000);
+            navigate('/admin/DashboardAdm');
+          } else {
+            var username = localStorage.getItem('username')
+
+            toast.update(loadingToastId, { render: `Welcome back ${username}! `, type: 'success', isLoading: false, autoClose: 3000 });
+            await delay(3000);
+            navigate('/dashboard');
+          }
         } else {
-          console.log('Login Failed');
+          toast.update(loadingToastId, { render: 'Login Failed', type: 'error', isLoading: false, autoClose: 3000 });
         }
       } catch (error) {
+        toast.update(loadingToastId, { render: 'Error during login', type: 'error', isLoading: false, autoClose: 3000 });
         console.error('Error during login: ', error);
       }
     },
   });
 
-
-  // Function to fetch user's income data
-// const fetchUserIncomeData = async () => {
-//   try {
-//       const token = localStorage.getItem('token');
-//       const response = await fetch('/api/income', {
-//           headers: {
-//               'Authorization': `Bearer ${token}`
-//           }
-//       });
-//       const data = await response.json();
-//       console.log('User income data:', data);
-      // Update state with user income data and display in tables
-//   } catch (error) {
-//       console.error('Failed to fetch user income data:', error);
-//   }
-// };
-
-  // Function to handle Google OAuth authentication
   const handleGoogleAuth = async () => {
     try {
-      // Redirect the user to the Google OAuth authentication route
       window.location.href = 'http://localhost:3000/auth/google';
     } catch (error) {
       console.error('Error during Google authentication:', error);
-      // Handle error if needed
+      toast.error('Error during Google authentication');
     }
   };
 
@@ -91,10 +82,6 @@ const Login = () => {
             <Link to="/" className="goBack">
               <img src={goBack} alt="GO-back" />
             </Link>
-            {/* <h3>
-            Welcome to Smart-Money
-          </h3>
-          <p>Your way to grow up !</p> */}
             <img src={login} alt="login-illustration" />
           </div>
           <div className="login-right">
@@ -124,11 +111,6 @@ const Login = () => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    {/* {showPassword ? (
-                    <FaEyeSlash onClick={() => setShowPassword(!showPassword)} />
-                  ) : (
-                    <FaEye onClick={() => setShowPassword(!showPassword)} />
-                  )} */}
                     {formik.touched.password && formik.errors.password && (
                       <span className="error">{formik.errors.password}</span>
                     )}
@@ -157,6 +139,7 @@ const Login = () => {
         </div>
       </div>
       <Footer />
+      <ToastContainer />
     </>
   );
 };

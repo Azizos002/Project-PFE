@@ -1,3 +1,4 @@
+// models/User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
@@ -16,7 +17,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-},{
+  role: {
+    type: String,
+    enum: ['user', 'superUser'],
+    default: 'user',
+  }
+}, {
   timestamps: true
 });
 
@@ -27,7 +33,6 @@ userSchema.pre('save', async function (next) {
   }
 
   const saltRounds = await bcrypt.genSalt(10);
-  console.log('test salt generated : ',saltRounds)
   const hashedPassword = await bcrypt.hash(this.password, saltRounds);
   this.password = hashedPassword;
   next(); 

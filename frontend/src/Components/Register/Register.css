@@ -100,6 +100,17 @@ form input[type='text']:hover {
     border: 2px solid #00ed64;
 }
 
+/* New styles for telephone and adresse row */
+.telephone-adresse-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+}
+
+.telephone-adresse-row input[type='text'] {
+    width: calc(50% - 10px) !important; /* Adjust width to fit two inputs in a row */
+}
+
 .pass-input-div {
     position: relative;
 }

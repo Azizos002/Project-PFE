@@ -19,11 +19,15 @@ const Register = () => {
       username: "",
       email: "",
       password: "",
+      telephone: "",
+      adresse: "",
     },
     validationSchema: Yup.object({
       username: Yup.string().required("Username is required."),
       email: Yup.string().email("Invalid email address").required("Email is required."),
       password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required."),
+      telephone: Yup.string().required("Telephone is required."),
+      adresse: Yup.string().required("Address is required."),
     }),
     onSubmit: async (values) => {
       try {
@@ -31,6 +35,8 @@ const Register = () => {
           username: values.username,
           email: values.email,
           password: values.password,
+          telephone: values.telephone,
+          adresse: values.adresse,
         });
 
         if (response.status === 200) {
@@ -71,6 +77,7 @@ const Register = () => {
                   {formik.touched.username && formik.errors.username && (
                     <span className="error">{formik.errors.username}</span>
                   )}
+
                   <input
                     type="email"
                     placeholder="Email"
@@ -83,6 +90,35 @@ const Register = () => {
                   {formik.touched.email && formik.errors.email && (
                     <span className="error">{formik.errors.email}</span>
                   )}
+
+                  <input
+                    className="telephone-adresse-row"
+                    type="text"
+                    placeholder="Telephone"
+                    name="telephone"
+                    aria-label="Telephone"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.telephone}
+                  />
+                  {formik.touched.telephone && formik.errors.telephone && (
+                    <span className="error">{formik.errors.telephone}</span>
+                  )}
+
+                  <input
+                    className="telephone-adresse-row"
+                    type="text"
+                    placeholder="Address"
+                    name="adresse"
+                    aria-label="Address"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.adresse}
+                  />
+                  {formik.touched.adresse && formik.errors.adresse && (
+                    <span className="error">{formik.errors.adresse}</span>
+                  )}
+
                   <div className="pass-input-div">
                     <input
                       type="password"
@@ -93,9 +129,6 @@ const Register = () => {
                       onBlur={formik.handleBlur}
                       value={formik.values.password}
                     />
-                    {/* Uncomment below lines to add show/hide password functionality */}
-                    {/* type={showPassword ? "text" : "password"} */}
-                    {/* {showPassword ? <FaEyeSlash onClick={() => setShowPassword(!showPassword)} /> : <FaEye onClick={() => setShowPassword(!showPassword)} />} */}
                     {formik.touched.password && formik.errors.password && (
                       <span className="error">{formik.errors.password}</span>
                     )}

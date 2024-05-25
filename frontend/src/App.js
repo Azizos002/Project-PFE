@@ -26,6 +26,7 @@ import AboutDashboard from './Components/pages/SideBar/Content/AboutDashboard/Ab
 import Statistics from './Components/Dashboard/Statistics'
 import Profile from './Components/Profile/Profile';
 import Settings from './Components/Dashboard/Settings/Settings';
+import AdminDashboard from './Components/Admin/AdminDahboard';
 
 function App() {
   return (
@@ -54,9 +55,10 @@ function App() {
           <Route path='/Dashboard/Food' element={<Food />} />
           <Route path='/Dashboard/Saving' element={<Saving />} />
           <Route path='/Dashboard/help' element={<AboutDashboard />} />
-          <Route path='/Statistics' element={<Statistics />} />
+          <Route path='/Dashboard/Statistics' element={<Statistics />} />
           <Route path='/profile' element={<Profile /> } />
           <Route path='/Dashboard/Settings' element={<Settings />} />
+          <Route path='/admin/DashboardAdm' element={<AdminDashboard />} />
         </Routes>
       </Router>
     </div>

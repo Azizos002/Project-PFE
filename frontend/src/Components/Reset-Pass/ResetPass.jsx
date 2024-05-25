@@ -156,6 +156,7 @@ const ResetPass = () => {
           <h2>Enter OTP Code</h2>
           <p>Please enter your OTP code received in your email here:</p>
           <OtpInput
+            inputStyle={{minWidth: '3em'}}
             required
             value={otp}
             onChange={setOtp}

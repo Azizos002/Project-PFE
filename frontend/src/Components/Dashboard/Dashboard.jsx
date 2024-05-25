@@ -44,6 +44,7 @@ const Dashboard = () => {
       <SideBar />
       <div className='content'>
         <NavbarDashboard />
+
       </div>
     </div>
   );

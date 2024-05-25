@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Pie } from 'react-chartjs-2';
 // eslint-disable-next-line no-unused-vars
 import Chart from 'chart.js/auto';
+import Dashboard from './Dashboard';
 
 const Statistics = () => {
     const [categoryTotals, setCategoryTotals] = useState([]);
@@ -11,7 +12,7 @@ const Statistics = () => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:5000/api/total/fetchTotal', {
+                const response = await axios.get('http://localhost:5000/api/chart/getAll', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -54,12 +55,17 @@ const Statistics = () => {
     };
 
     return (
-        <div className="dashboard">
-            <div className="chart-container">
-                <h2>Total Spending by Category</h2>
-                <Pie data={chartData} />
+        <>
+        <Dashboard />
+            <div className="PagesContent">
+                <div className="dashboard">
+                    <div className="chart-container">
+                        <h2>Total Spending by Category</h2>
+                        <Pie data={chartData} />
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

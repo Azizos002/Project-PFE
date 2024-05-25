@@ -1,0 +1,49 @@
+/* AdminDashboard.css */
+
+.AdmDash {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .AdmDash-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .AdmDash-search {
+    margin-bottom: 20px;
+  }
+  
+  .AdmDash-search input[type="text"],
+  .AdmDash-search button {
+    margin-right: 10px;
+  }
+  
+  .AdmDash-users table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .AdmDash-users th,
+  .AdmDash-users td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .AdmDash-delete-btn,
+  .AdmDash-update-btn {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    background-color: #dc3545;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .AdmDash-update-input {
+    padding: 5px;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+  }  
